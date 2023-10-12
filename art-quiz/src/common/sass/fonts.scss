@@ -5,3 +5,9 @@
   font-weight: 500;
   font-style: normal;
 }
+
+@mixin gilroy ($fs, $fw, $lh) {
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+}

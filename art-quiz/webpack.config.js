@@ -23,7 +23,7 @@ module.exports = {
   },
   devtool,
   devServer: {
-    port: 3000,
+    port: 2000,
     compress: true,
     hot: true,
     static: './dist',

@@ -1,10 +1,102 @@
 body {
+  position: relative;
+  background: url('./common/img/main-pic.jpg') no-repeat;
+  background-size: contain;
+  background-position: center;
   background-color: #000000;
+  height: 100vh;
   font-family: 'Gilroy', sans-serif;
+  outline: none;
 }
 
-h1 {
-  color: white;
-  // font-weight: 700;
+button {
+  border: 1.5px solid #FFF;
+  border-radius: 60px;
+  background-color: transparent;
+  cursor: pointer;
+}
 
+a {
+  text-decoration: none;
+}
+
+.main__page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  height: 100vh;
+}
+
+.settings {
+  position: absolute;
+  top: 70px;
+  right: 70px;
+  width: 36px;
+  height: 36px;
+
+  background-image: url('./common/img/settings-logo.svg');
+  transition: 0.3s ease;
+  border: none;
+
+  &:hover {
+    filter: invert(70%) sepia(13%) saturate(14%) hue-rotate(342deg) brightness(86%) contrast(81%);
+  }
+}
+
+.main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.main__logo {
+  width: 380px;
+  margin: 40px 0;
+}
+
+.button {
+  padding: 20px 0;
+  width: 287px;
+  color: #FFF;
+  @include gilroy (22px, 500, 22px);
+  transition: 0.4s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:nth-child(2) {
+    margin-right: 36px;
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.footer__item {
+  margin: 0;
+  @include gilroy (16px, 500, 20px);
+  color: #FFF;
+}
+
+.link {
+  color: white;
+  transition: 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  body {
+    background-size: cover;
+  }
 }
