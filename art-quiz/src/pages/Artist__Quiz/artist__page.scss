@@ -1,0 +1,28 @@
+.artist__page {
+  width: 95%;
+  margin: auto;
+}
+
+.page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+}
+
+.controller__btn {
+  border: none;
+  @include gilroy (22px, 500, 18px);
+  color: #FFf;
+  transition: 0.3s ease;
+
+  &:last-child {
+    color: #FFBCA2;
+    line-height: 700;
+    cursor: auto;
+  }
+
+  &:hover:not(:last-child) {
+    color: #777777;
+  }
+}
