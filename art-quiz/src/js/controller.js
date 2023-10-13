@@ -10,7 +10,7 @@ export default class ControllerPages {
     buttons.forEach((item) => {
       item.addEventListener('click', () => {
         this.pageName = item.getAttribute('data-page');
-        RenderPage.render(this.pageName);
+        new RenderPage().render(this.pageName);
       });
     });
   }
