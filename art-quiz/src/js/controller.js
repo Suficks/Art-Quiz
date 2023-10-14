@@ -1,17 +1,46 @@
-import RenderPage from './render';
+import Main from '../pages/Main';
+import Artist from '../pages/Artist';
+// import Pictures from '../pages/Artist';
+// import Settings from '../pages/Artist';
+
+const mainContainer = document.querySelector('.main__wrapper');
+
+const classes = {
+  Main,
+  Artist,
+  // Pictures,
+  // Settings,
+};
 
 export default class ControllerPages {
-  constructor(page) {
-    this.page = page;
+  constructor() {
+    this.state = {
+      CurrentPage: Main,
+    };
   }
 
   init() {
-    const buttons = document.querySelectorAll('button');
+    this.changePage();
+    this.setEventListener();
+  }
+
+  changePage() {
+    const { CurrentPage } = this.state;
+    mainContainer.innerHTML = '';
+    mainContainer.insertAdjacentHTML('beforeend', new CurrentPage().render());
+    this.setEventListener();
+  }
+
+  setEventListener() {
+    const buttons = document.querySelectorAll('.button__controller');
     buttons.forEach((item) => {
       item.addEventListener('click', () => {
-        this.pageName = item.getAttribute('data-page');
-        new RenderPage().render(this.pageName);
+        const pageName = item.getAttribute('data-page');
+        this.state.CurrentPage = classes[pageName];
+        this.changePage();
       });
     });
   }
 }
+
+new ControllerPages().init();

@@ -28,35 +28,35 @@ a {
   height: 100vh;
 }
 
-.main__wrapper__move {
-  animation: move 0.7s ease;
-}
+// .main__wrapper__move {
+//   animation: move 0.7s ease;
+// }
 
-.main__wrapper__remove {
-  animation: remove 0.7s ease;
-}
+// .main__wrapper__remove {
+//   animation: remove 0.7s ease;
+// }
 
-@keyframes move {
-  0% {
-    transform: translateX(0);
-  }
+// @keyframes move {
+//   0% {
+//     transform: translateX(0);
+//   }
 
-  100% {
-    transform: translateX(-300%);
-  }
-}
+//   100% {
+//     transform: translateX(-300%);
+//   }
+// }
 
-@keyframes remove {
-  0% {
-    transform: translateX(-300%);
-  }
+// @keyframes remove {
+//   0% {
+//     transform: translateX(-300%);
+//   }
 
-  100% {
-    transform: translateX(0);
-  }
-}
+//   100% {
+//     transform: translateX(0);
+//   }
+// }
 
-.button {
+.button__controller {
   padding: 20px 0;
   width: 287px;
   color: #FFF;

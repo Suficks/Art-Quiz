@@ -1,4 +1,4 @@
-.artist__page {
+.artist {
   width: 100vw;
   height: 100vh;
   padding: 30px 70px 0;
@@ -17,7 +17,7 @@
     width: 45%;
   }
 
-  .controller__btn {
+  .button {
     border: none;
     @include gilroy (22px, 500, 18px);
     color: #FFf;
