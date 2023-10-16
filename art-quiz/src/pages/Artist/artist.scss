@@ -1,7 +1,8 @@
-.artist {
+.artist,
+.pictures {
   width: 100vw;
   height: 100vh;
-  padding: 30px 70px 0;
+  padding: 30px 70px 80px;
   box-sizing: border-box;
   background-color: black;
 
@@ -11,6 +12,7 @@
   }
 
   .page__header {
+    margin-bottom: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,6 +33,58 @@
 
     &:hover:not(:last-child) {
       color: #777777;
+    }
+  }
+
+  .cards__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 197px));
+    grid-column-gap: 25px;
+    grid-row-gap: 30px;
+    justify-content: center;
+
+    color: white;
+  }
+
+  .card__img__wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden
+  }
+
+  .card__title {
+    @include gilroy (20px, 500, 20px);
+  }
+
+  .card__img {
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s ease;
+    filter: grayscale(1);
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .score__btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+
+    background: url('./common/img/score-star.png') no-repeat 80% 50%;
+    background-color: #FFBCA2;
+    border-radius: 0;
+    border: none;
+    transition: 0.3s ease;
+    opacity: 0;
+    @include gilroy (22px, 500, 22px);
+    color: white;
+
+    &:hover {
+      background-color: #ff966d;
     }
   }
 }

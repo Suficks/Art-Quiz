@@ -1,6 +1,6 @@
 import Main from '../pages/Main';
 import Artist from '../pages/Artist';
-// import Pictures from '../pages/Artist';
+import Pictures from '../pages/Pictures';
 // import Settings from '../pages/Artist';
 
 const mainContainer = document.querySelector('.main__wrapper');
@@ -8,7 +8,7 @@ const mainContainer = document.querySelector('.main__wrapper');
 const classes = {
   Main,
   Artist,
-  // Pictures,
+  Pictures,
   // Settings,
 };
 
@@ -28,6 +28,9 @@ export default class ControllerPages {
     const { CurrentPage } = this.state;
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', new CurrentPage().render());
+    if (CurrentPage !== Main) {
+      new CurrentPage().cardFill();
+    }
     this.setEventListener();
   }
 
