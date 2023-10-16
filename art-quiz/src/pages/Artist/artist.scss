@@ -46,6 +46,12 @@
     color: white;
   }
 
+  .card__title__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .card__img__wrap {
     position: relative;
     border-radius: 20px;
@@ -54,6 +60,10 @@
 
   .card__title {
     @include gilroy (20px, 500, 20px);
+  }
+
+  .score {
+    color: #FFBCA2;
   }
 
   .card__img {

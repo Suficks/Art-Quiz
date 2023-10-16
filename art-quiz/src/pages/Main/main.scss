@@ -61,11 +61,7 @@ a {
   width: 287px;
   color: #FFF;
   @include gilroy (22px, 500, 22px);
-  transition: 0.4s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  transition: 0.7s ease;
 
   &:nth-child(2) {
     margin-right: 36px;
@@ -93,6 +89,17 @@ a {
 .main {
   text-align: center;
   max-width: 614px;
+
+  .button__controller {
+    &:hover {
+      color: black;
+      background-color: #FFF;
+    }
+
+    &:active {
+      background-color: #FFBCA2;
+    }
+  }
 }
 
 .main__logo {
