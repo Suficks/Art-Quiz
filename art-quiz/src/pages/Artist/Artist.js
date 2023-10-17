@@ -31,7 +31,7 @@ export default class Artist {
             <p class="score"></p>
           </div>
           <div class="card__img__wrap">
-            <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="ArtistQuestion" alt="cardPic">
+            <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="ArtistQuestion" data-category="${i}" alt="cardPic">
             <button class="score__btn">Score</button>
           </div>
         </div>

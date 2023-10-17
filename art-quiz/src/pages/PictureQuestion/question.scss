@@ -1,6 +1,6 @@
 .question {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px 40px 0;
   box-sizing: border-box;
   background-color: black;
@@ -22,8 +22,9 @@
   }
 
   .question__img {
-    width: 100%;
-    height: 294px;
+    display: block;
+    width: 80%;
+    margin: auto;
     margin-bottom: 25px;
     object-fit: cover;
 
@@ -31,17 +32,17 @@
   }
 
   .buttons__wrap {
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 230px);
     justify-content: center;
+    gap: 15px;
     margin-bottom: 40px;
   }
 
   .question__btn {
-    width: 170px;
     height: 48px;
     color: white;
-    @include gilroy (18px, 300, 18px);
+    @include gilroy (16px, 300, 16px);
     transition: 0.7s ease;
 
     &:hover {
@@ -55,6 +56,7 @@
     display: flex;
     gap: 20px;
     justify-content: center;
+    margin-bottom: 70px;
   }
 
   .progress__dot {
@@ -63,4 +65,24 @@
     background-color: #C4C4C4;
     border-radius: 50%;
   }
+
+  .img__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 437px));
+    gap: 25px;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+
+  .artist__img {
+    width: 100%;
+    border-radius: 20px;
+
+  }
+
+  // @media screen and (min-width: 1024px) {
+  //   .question__img {
+  //     height: 500px;
+  //   }
+  // }
 }

@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+
 export default class Pictures {
   render() {
     return `
@@ -30,7 +31,7 @@ export default class Pictures {
             <p class="score"></p>
           </div>
           <div class="card__img__wrap">
-            <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="PictureQuestion" alt="cardPic">
+            <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="PictureQuestion" data-category="${i}" alt="cardPic">
             <button class="score__btn">Score</button>
           </div>
         </div>
