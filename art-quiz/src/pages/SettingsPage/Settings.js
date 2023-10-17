@@ -1,10 +1,10 @@
 export default class Settings {
-  render() {
+  render(pageBeforeSettings) {
     return `
       <div class="settings__page">
         <div class="page__header">
           <button class="button__controller" data-page="Main">Home</button>
-          <img class="close button__controller" src="assets/close-logo.svg" alt="close" data-page="Main">
+          <img class="close button__controller" src="assets/close-logo.svg" alt="close" data-page="${pageBeforeSettings}">
         </div>
         <div class="settings__wrap">
           <label class="label">

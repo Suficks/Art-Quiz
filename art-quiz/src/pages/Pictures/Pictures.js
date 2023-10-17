@@ -9,7 +9,7 @@ export default class Pictures {
           <button class="button button__controller" data-page="Main">Home</button>
           <button class="button">Categories</button>
         </div>
-        <div class="cards__container"></div>
+        <div class="cards__container">${this.cardFill()}</div>
       </div>
     `;
   }
@@ -18,7 +18,8 @@ export default class Pictures {
     const PICNUMBER = 120;
     const PICPERCATEGORIE = 10;
     const categories = ['Portrait', 'Landscape', 'Still Life', 'Graphic', 'Antique', 'Avant-Garde', 'Renaissance', 'Surrealism', 'Kitsch', 'Minimalism', 'Avangard', 'Industrial'];
-    const cardContainer = document.querySelector('.cards__container');
+
+    let result = '';
 
     for (let i = 0; i < PICNUMBER; i += 1) {
       if (i % PICPERCATEGORIE === 0) {
@@ -29,13 +30,15 @@ export default class Pictures {
             <p class="score"></p>
           </div>
           <div class="card__img__wrap">
-            <img class="card__img" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-category="${i}" alt="cardPic">
+            <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="PictureQuestion" alt="cardPic">
             <button class="score__btn">Score</button>
           </div>
         </div>
         `;
-        cardContainer.insertAdjacentHTML('beforeend', cardItem);
+        result += cardItem;
       }
     }
+
+    return result;
   }
 }

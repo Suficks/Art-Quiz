@@ -15,9 +15,9 @@
   .button__controller {
     position: relative;
     border: none;
-    padding: 0;
     width: unset;
     padding-left: 35px;
+    color: white;
 
     &:hover {
       transform: scale(1);
@@ -40,6 +40,7 @@
   .close {
     cursor: pointer;
     margin-right: 0;
+    transition: 0.3s ease;
 
     &:hover {
       filter: invert(70%) sepia(13%) saturate(14%) hue-rotate(342deg) brightness(86%) contrast(81%);

@@ -2,6 +2,7 @@ import Main from '../pages/Main';
 import Artist from '../pages/Artist';
 import Pictures from '../pages/Pictures';
 import Settings from '../pages/SettingsPage';
+import PictureQuestion from '../pages/PictureQuestion';
 
 const mainContainer = document.querySelector('.main__wrapper');
 
@@ -10,12 +11,14 @@ const classes = {
   Artist,
   Pictures,
   Settings,
+  PictureQuestion,
 };
 
 export default class ControllerPages {
   constructor() {
     this.state = {
-      CurrentPage: Main,
+      currentPage: 'Main',
+      pageBeforeSettings: '',
     };
   }
 
@@ -25,10 +28,9 @@ export default class ControllerPages {
   }
 
   changePage() {
-    const { CurrentPage } = this.state;
+    const { currentPage, pageBeforeSettings } = this.state;
     mainContainer.innerHTML = '';
-    mainContainer.insertAdjacentHTML('beforeend', new CurrentPage().render());
-    if (CurrentPage === Pictures || CurrentPage === Artist) new CurrentPage().cardFill();
+    mainContainer.insertAdjacentHTML('beforeend', new classes[currentPage]().render(pageBeforeSettings));
     this.setEventListener();
   }
 
@@ -37,7 +39,10 @@ export default class ControllerPages {
     buttons.forEach((item) => {
       item.addEventListener('click', () => {
         const pageName = item.getAttribute('data-page');
-        this.state.CurrentPage = classes[pageName];
+        if (pageName === 'Settings') {
+          this.state.pageBeforeSettings = this.state.currentPage;
+        }
+        this.state.currentPage = pageName;
         this.changePage();
       });
     });

@@ -4,7 +4,6 @@ body {
   background-size: contain;
   background-position: center;
   background-color: #000000;
-  height: 100vh;
   font-family: 'Gilroy', sans-serif;
   outline: none;
 }
@@ -14,6 +13,8 @@ button {
   border-radius: 60px;
   background-color: transparent;
   cursor: pointer;
+  transition: 0.3s ease;
+  @include gilroy (22px, 500, 22px);
 }
 
 a {
@@ -24,8 +25,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 // .main__wrapper__move {
@@ -56,11 +56,10 @@ a {
 //   }
 // }
 
-.button__controller {
+.button {
   padding: 20px 0;
   width: 287px;
   color: #FFF;
-  @include gilroy (22px, 500, 22px);
   transition: 0.7s ease;
 
   &:nth-child(2) {
@@ -75,10 +74,8 @@ a {
   width: 36px;
   height: 36px;
   z-index: 4;
-  padding: 0;
 
   background-image: url('./common/img/settings-logo.svg');
-  transition: 0.3s ease;
   border: none;
 
   &:hover {
