@@ -22,7 +22,7 @@ export default class ControllerPages {
   constructor() {
     this.state = {
       currentPage: 'Main',
-      pageBeforeSettings: '',
+      pageBeforeSettings: 'Main',
       dataCategory: 0,
     };
   }
