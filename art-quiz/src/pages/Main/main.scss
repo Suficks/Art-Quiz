@@ -106,7 +106,6 @@ a {
     margin: 40px 0;
   }
 
-
   @media screen and (max-width: 670px) {
     .button {
       display: block;
@@ -120,6 +119,12 @@ a {
     .settings {
       top: 50px;
       right: 30px;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    .main__logo {
+      width: 250px;
     }
   }
 }
@@ -163,5 +168,13 @@ a {
     background: url('./common/img/main-pic-768.jpg') no-repeat;
     background-size: cover;
     background-position: center;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .footer {
+    .logo {
+      width: 70px;
+    }
   }
 }

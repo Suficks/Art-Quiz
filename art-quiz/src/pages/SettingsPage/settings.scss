@@ -202,4 +202,31 @@
       background-color: #fb966e;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .settings__page {
+      padding: 30px 65px 0;
+    }
+
+    input[type=range] {
+      width: calc(200px + (492 - 200) * ((100vw - 320px) / (768 - 320)));
+    }
+  }
+
+  @media screen and (max-width: 520px) {
+    .label {
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .logo {
+      width: 60px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .settings__page {
+    padding: 30px 40px 0;
+  }
 }

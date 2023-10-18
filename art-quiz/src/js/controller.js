@@ -22,7 +22,7 @@ export default class ControllerPages {
   constructor() {
     this.state = {
       currentPage: 'Main',
-      pageBeforeSettings: 'Main',
+      pageBeforeSettings: '',
       dataCategory: 0,
     };
   }
@@ -36,6 +36,7 @@ export default class ControllerPages {
     const { currentPage, pageBeforeSettings, dataCategory } = this.state;
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', new classes[currentPage]().render(pageBeforeSettings, dataCategory));
+
     switch (currentPage) {
       case 'PictureQuestion':
         new PictureQuestion().dataFetch();
@@ -53,10 +54,12 @@ export default class ControllerPages {
 
   setEventListener() {
     const buttons = document.querySelectorAll('.button__controller');
+
     buttons.forEach((item) => {
       item.addEventListener('click', () => {
         this.state.dataCategory = item.getAttribute('data-category');
         const pageName = item.getAttribute('data-page');
+
         if (pageName === 'Settings') {
           this.state.pageBeforeSettings = this.state.currentPage;
         }
