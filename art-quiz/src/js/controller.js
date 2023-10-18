@@ -34,7 +34,7 @@ export default class ControllerPages {
     const { currentPage, pageBeforeSettings, dataCategory } = this.state;
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', new classes[currentPage]().render(pageBeforeSettings, dataCategory));
-    if (currentPage === 'PictureQuestion') new classes[currentPage]().modalOpen();
+    if (currentPage === 'PictureQuestion') new classes[currentPage]().modalToggle();
     this.setEventListener();
   }
 

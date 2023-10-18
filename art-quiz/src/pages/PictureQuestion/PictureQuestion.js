@@ -30,7 +30,7 @@ export default class PictureQuestion {
           <span class="progress__dot"></span>
           <span class="progress__dot"></span>
         </div>
-        <div class="answerModal">
+        <div class="answer__modal">
           <div class="current__img__wrap">
             <div class="answer"></div>
             <img src="https://raw.githubusercontent.com/Suficks/image-data/master/full/6full.jpg" alt="img" class="current__img">
@@ -41,11 +41,11 @@ export default class PictureQuestion {
           <button class="next__button button__controller" data-page="PictureQuestion">Next</button>
         </div>
         <div class="quit__game__modal">
-          <img class="close picture__close" src="assets/close-logo-black.svg" alt="close">
+          <img class="close modal__close" src="assets/close-logo-black.svg" alt="close">
           <p class="quit__text">Do you really want to quit the game?</p>
-          <div class="buttons__wrap">
-            <button class="button">Cancel</button>
-            <button class="button yes__btn">Yes</button>
+          <div class="quit__buttons__wrap">
+            <button class="button cancel__btn">Cancel</button>
+            <button class="button button__controller" data-page="Pictures">Yes</button>
           </div>
         </div>
         <div class="overlay"></div>
@@ -69,16 +69,31 @@ export default class PictureQuestion {
     return buttons;
   }
 
-  modalOpen() {
+  modalToggle() {
     const answers = document.querySelectorAll('.question__btn');
-    const answerModal = document.querySelector('.answerModal');
+
+    const answerModal = document.querySelector('.answer__modal');
+    const quitGameModal = document.querySelector('.quit__game__modal');
+
     const overlay = document.querySelector('.overlay');
 
+    const quitGameBtn = document.querySelector('.picture__close');
+    const closeModalBtn = document.querySelector('.modal__close');
+    const cancelBtn = document.querySelector('.cancel__btn');
+
     answers.forEach((item) => {
-      item.addEventListener('click', () => {
-        answerModal.classList.add('answerModal__active');
-        overlay.classList.add('overlay__active');
-      });
+      this.modalToggleSetListener(item, answerModal, overlay);
+    });
+
+    this.modalToggleSetListener(quitGameBtn, quitGameModal, overlay);
+    this.modalToggleSetListener(closeModalBtn, quitGameModal, overlay);
+    this.modalToggleSetListener(cancelBtn, quitGameModal, overlay);
+  }
+
+  modalToggleSetListener(btn, modal, overlay) {
+    btn.addEventListener('click', () => {
+      modal.classList.toggle('quit__game__modal__active');
+      overlay.classList.toggle('overlay__active');
     });
   }
 }
