@@ -197,5 +197,9 @@
     background-color: #FFBCA2;
     color: black;
     border: none;
+
+    &:hover {
+      background-color: #fb966e;
+    }
   }
 }
