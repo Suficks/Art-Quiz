@@ -1,5 +1,9 @@
 /* eslint-disable class-methods-use-this */
-export default class PictureQuestion {
+
+import QuitModal from '../QuitModal';
+import AnswerModal from '../AnswerModal';
+
+export default class ArtistQuestion {
   render(_, dataCategory) {
     return `
       <div class="question">
@@ -11,18 +15,21 @@ export default class PictureQuestion {
           <img class="artist__img" src="https://raw.githubusercontent.com/Suficks/image-data/master/full/${dataCategory}full.jpg" alt="question">
           <img class="artist__img" src="https://raw.githubusercontent.com/Suficks/image-data/master/full/${dataCategory}full.jpg" alt="question">
         </div>
-          <div class="progress__dots">
-            <span class="progress__dot"></span>
-            <span class="progress__dot"></span>
-            <span class="progress__dot"></span>
-            <span class="progress__dot"></span>
-            <span class="progress__dot"></span>
-            <span class="progress__dot"></span>
-            <span class="progress__dot"></span>
-            <span class="progress__dot"></span> 
-            <span class="progress__dot"></span>
-            <span class="progress__dot"></span>
-          </div>
+        <div class="progress__dots">
+          <span class="progress__dot"></span>
+          <span class="progress__dot"></span>
+          <span class="progress__dot"></span>
+          <span class="progress__dot"></span>
+          <span class="progress__dot"></span>
+          <span class="progress__dot"></span>
+          <span class="progress__dot"></span>
+          <span class="progress__dot"></span> 
+          <span class="progress__dot"></span>
+          <span class="progress__dot"></span>
+        </div>
+        ${new AnswerModal().render('ArtistQuestion')}
+        ${new QuitModal().render('Artist')}
+        <div class="overlay"></div>
       </div>
       `;
   }

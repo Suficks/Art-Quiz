@@ -1,0 +1,40 @@
+.answer__modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 500px;
+  width: 95%;
+  margin: auto;
+  padding: 20px;
+  box-sizing: border-box;
+
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+  @include gilroy (18px, 400, 18px);
+  z-index: 3;
+  transition: 0.6s ease;
+  transform: translate(-50%, -600%);
+
+  .current__img {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+  }
+
+  .next__button {
+    background-color: #FFBCA2;
+    max-width: 250px;
+    width: 100%;
+    padding: 10px 0;
+    transition: 0.5s ease;
+
+    &:hover {
+      background-color: #fb966e;
+    }
+  }
+}
+
+.answer__modal__active {
+  transform: translate(-50%, -50%);
+}
