@@ -1,6 +1,8 @@
 export default class Main {
   render() {
-    return `
+    const mainContainer = document.querySelector('.main__wrapper');
+
+    const template = `
     <div class="main__page">
       <button class="button__controller settings" data-page="Settings"></button>
       <div class="main">
@@ -10,5 +12,8 @@ export default class Main {
       </div>
     </div>
     `;
+
+    mainContainer.innerHTML = '';
+    mainContainer.insertAdjacentHTML('beforeend', template);
   }
 }

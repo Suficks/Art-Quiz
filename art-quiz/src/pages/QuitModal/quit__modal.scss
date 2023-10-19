@@ -25,7 +25,7 @@
   }
 
   .quit__text {
-    margin: 45px 0;
+    margin: 40px 0;
   }
 
   .quit__buttons__wrap {
@@ -36,6 +36,8 @@
   .button {
     display: inline-block;
     padding: 15px;
+    max-width: 287px;
+    width: 100%;
 
     color: black;
     border: 1.5px solid black;

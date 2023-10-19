@@ -1,7 +1,9 @@
 /* eslint-disable class-methods-use-this */
 export default class Artist {
   render() {
-    return `
+    const mainContainer = document.querySelector('.main__wrapper');
+
+    const template = `
       <div class="artist">
         <div class="page__header">
           <button class="settings button__controller" data-page="Settings"></button>
@@ -12,6 +14,9 @@ export default class Artist {
         <div class="cards__container">${this.cardFill()}</div>
       </div>
     `;
+
+    mainContainer.innerHTML = '';
+    mainContainer.insertAdjacentHTML('beforeend', template);
   }
 
   cardFill() {

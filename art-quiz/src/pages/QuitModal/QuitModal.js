@@ -14,20 +14,21 @@ export default class QuitModal {
   }
 
   modalToggle() {
-    const quitGameModal = document.querySelector('.quit__game__modal');
-    const overlay = document.querySelector('.overlay');
     const quitGameBtn = document.querySelector('.picture__close');
     const closeModalBtn = document.querySelector('.modal__close');
     const cancelBtn = document.querySelector('.cancel__btn');
 
-    new QuitModal().modalToggleSetListener(quitGameBtn, quitGameModal, overlay);
-    new QuitModal().modalToggleSetListener(closeModalBtn, quitGameModal, overlay);
-    new QuitModal().modalToggleSetListener(cancelBtn, quitGameModal, overlay);
+    new QuitModal().modalToggleSetListener(quitGameBtn);
+    new QuitModal().modalToggleSetListener(closeModalBtn);
+    new QuitModal().modalToggleSetListener(cancelBtn);
   }
 
-  modalToggleSetListener(btn, modal, overlay) {
+  modalToggleSetListener(btn) {
+    const quitGameModal = document.querySelector('.quit__game__modal');
+    const overlay = document.querySelector('.overlay');
+
     btn.addEventListener('click', () => {
-      modal.classList.toggle('quit__game__modal__active');
+      quitGameModal.classList.toggle('quit__game__modal__active');
       overlay.classList.toggle('overlay__active');
     });
   }

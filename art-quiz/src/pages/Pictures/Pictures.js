@@ -2,7 +2,9 @@
 
 export default class Pictures {
   render() {
-    return `
+    const mainContainer = document.querySelector('.main__wrapper');
+
+    const template = `
       <div class="pictures">
         <div class="page__header">
           <button class="settings button__controller" data-page="Settings"></button>
@@ -13,6 +15,9 @@ export default class Pictures {
         <div class="cards__container">${this.cardFill()}</div>
       </div>
     `;
+
+    mainContainer.innerHTML = '';
+    mainContainer.insertAdjacentHTML('beforeend', template);
   }
 
   cardFill() {

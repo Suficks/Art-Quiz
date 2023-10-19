@@ -5,9 +5,6 @@ import Settings from '../pages/SettingsPage';
 import PictureQuestion from '../pages/PictureQuestion';
 import ArtistQuestion from '../pages/ArtistQuestion';
 import QuitModal from '../pages/QuitModal';
-import AnswerModal from '../pages/AnswerModal';
-
-const mainContainer = document.querySelector('.main__wrapper');
 
 const classes = {
   Main,
@@ -16,6 +13,7 @@ const classes = {
   Settings,
   PictureQuestion,
   ArtistQuestion,
+  QuitModal,
 };
 
 export default class ControllerPages {
@@ -29,26 +27,15 @@ export default class ControllerPages {
 
   init() {
     this.changePage();
-    this.setEventListener();
   }
 
   changePage() {
     const { currentPage, pageBeforeSettings, dataCategory } = this.state;
-    mainContainer.innerHTML = '';
-    mainContainer.insertAdjacentHTML('beforeend', new classes[currentPage]().render(pageBeforeSettings, dataCategory));
-
-    switch (currentPage) {
-      case 'PictureQuestion':
-        new PictureQuestion().dataFetch();
-        new QuitModal().modalToggle();
-        break;
-      case 'ArtistQuestion':
-        new AnswerModal().modalToggle();
-        new QuitModal().modalToggle();
-        break;
-      default:
-        break;
-    }
+    new classes[currentPage]().render(
+      pageBeforeSettings,
+      dataCategory,
+      this.setEventListener.bind(this),
+    );
     this.setEventListener();
   }
 

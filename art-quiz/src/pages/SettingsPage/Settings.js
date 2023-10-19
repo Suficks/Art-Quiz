@@ -1,6 +1,8 @@
 export default class Settings {
   render(pageBeforeSettings) {
-    return `
+    const mainContainer = document.querySelector('.main__wrapper');
+
+    const template = `
       <div class="settings__page">
         <div class="page__header">
           <button class="button__controller" data-page="Main">Home</button>
@@ -32,5 +34,8 @@ export default class Settings {
         </div>
       </div>
     `;
+
+    mainContainer.innerHTML = '';
+    mainContainer.insertAdjacentHTML('beforeend', template);
   }
 }
