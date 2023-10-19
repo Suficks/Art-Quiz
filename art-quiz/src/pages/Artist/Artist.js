@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 export default class Artist {
   render() {
     const mainContainer = document.querySelector('.main__wrapper');

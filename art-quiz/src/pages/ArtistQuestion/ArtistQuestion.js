@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-
 import QuitModal from '../QuitModal';
 import AnswerModal from '../AnswerModal';
 

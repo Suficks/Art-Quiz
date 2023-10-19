@@ -1,17 +1,21 @@
-/* eslint-disable class-methods-use-this */
-
 import QuitModal from '../QuitModal';
 import AnswerModal from '../AnswerModal';
+import EndGameModal from '../EndGameModal';
+
+const QUESTION_LENGTH = 10;
 
 export default class PictureQuestion {
   constructor() {
     this.state = {
+      dataCategory: 0,
       pictureNum: 0,
       data: [],
+      correctAnswerCount: 0,
     };
   }
 
-  async render(_, dataCategory) {
+  async render(_, dataCategory, setEventListener) {
+    this.state.dataCategory = +dataCategory;
     this.state.pictureNum = +dataCategory || this.state.pictureNum;
 
     await this.dataFetch();
@@ -38,6 +42,7 @@ export default class PictureQuestion {
         </div>
         ${new AnswerModal().render()}
         ${new QuitModal().render('Pictures')}
+        ${new EndGameModal().render('Pictures', 'PictureQuestion')}
         <div class="overlay"></div>
       </div >
     `;
@@ -46,8 +51,8 @@ export default class PictureQuestion {
     mainContainer.insertAdjacentHTML('beforeend', template);
     this.getAuthors();
     new QuitModal().modalToggle();
-    // setEventListener();
-    this.correctAnswer();
+    setEventListener();
+    this.answerCheck();
     this.nextQuestion();
   }
 
@@ -61,21 +66,23 @@ export default class PictureQuestion {
     const { pictureNum, data } = this.state;
     const buttonContainer = document.querySelector('.buttons__wrap');
 
-    const buttons = [...new Set()];
+    const buttons = new Set();
 
     const correctAnswer = data[pictureNum].author;
     const correctButton = `<button class="question__btn">${correctAnswer}</button>`;
-    buttons.push(correctButton);
 
-    for (let i = 0; i < 3; i += 1) {
+    while (buttons.size < 4) {
+      buttons.add(correctButton);
       const randomAuthor = Math.floor(Math.random() * 240);
       const { author } = data[randomAuthor];
       const button = `<button class="question__btn">${author}</button>`;
-      buttons.push(button);
+      buttons.add(button);
     }
-    this.shuffle(buttons);
+
+    const shuffleButtons = this.shuffle([...buttons]);
     buttonContainer.innerHTML = '';
-    buttons.forEach((item) => {
+
+    shuffleButtons.forEach((item) => {
       buttonContainer.insertAdjacentHTML('beforeend', item);
     });
   }
@@ -85,9 +92,10 @@ export default class PictureQuestion {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+    return array;
   }
 
-  correctAnswer() {
+  answerCheck() {
     const { pictureNum, data } = this.state;
     const { author, name, year } = data[pictureNum];
 
@@ -107,6 +115,7 @@ export default class PictureQuestion {
         if (item.textContent === author) {
           correctIcon.src = 'assets/correct-icon.svg';
           progressDots[dotsCount].style.backgroundColor = '#47A76A';
+          this.state.correctAnswerCount += 1;
         } else {
           correctIcon.src = 'assets/incorrect-icon.svg';
           progressDots[dotsCount].style.backgroundColor = '#FFBCA2';
@@ -116,20 +125,60 @@ export default class PictureQuestion {
         correctName.innerHTML = name;
         correctYear.innerHTML = year;
       });
-      new AnswerModal().modalToggleSetListener(item);
+      new AnswerModal().modalToggle(item);
     });
+  }
+
+  endGame() {
+    const { correctAnswerCount, dataCategory } = this.state;
+    const endImg = document.querySelector('.end__img');
+    const finalText = document.querySelector('.end__game__text');
+    const result = document.querySelector('.final__result');
+    const homeBtn = document.querySelector('.home__btn');
+    const nexeQuizBtn = document.querySelector('.next__quiz__btn');
+
+    if (correctAnswerCount < 5) {
+      endImg.src = 'assets/lose-trophy.svg';
+      finalText.innerHTML = 'Game over';
+      result.innerHTML = 'Play again?';
+      homeBtn.innerHTML = 'No';
+      nexeQuizBtn.innerHTML = 'Yes';
+      nexeQuizBtn.setAttribute('data-category', dataCategory);
+    } else if (correctAnswerCount === 10) {
+      endImg.src = 'assets/stars.svg';
+      endImg.style.width = '240px';
+      finalText.innerHTML = 'Grand result';
+      result.innerHTML = 'Congratulations!';
+      homeBtn.innerHTML = 'Home';
+      nexeQuizBtn.innerHTML = 'Next Quiz';
+      nexeQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
+    } else {
+      endImg.src = 'assets/trophy.svg';
+      finalText.innerHTML = 'Congratulations!';
+      result.innerHTML = `${correctAnswerCount} / 10`;
+      homeBtn.innerHTML = 'Home';
+      nexeQuizBtn.innerHTML = 'Next Quiz';
+    }
+    new EndGameModal().modalToggle();
   }
 
   nextQuestion() {
     const nextBtn = document.querySelector('.next__button');
 
     nextBtn.addEventListener('click', () => {
+      const { pictureNum, dataCategory } = this.state;
+
+      if (pictureNum === dataCategory + QUESTION_LENGTH - 1) {
+        this.endGame();
+        return;
+      }
+
       const questionPic = document.querySelector('.question__img');
       this.state.pictureNum += 1;
       questionPic.src = `https://raw.githubusercontent.com/Suficks/image-data/master/img/${this.state.pictureNum}.jpg`;
       this.getAuthors();
-      this.correctAnswer();
+      this.answerCheck();
     });
-    new AnswerModal().modalToggleSetListener(nextBtn);
+    new AnswerModal().modalToggle(nextBtn);
   }
 }

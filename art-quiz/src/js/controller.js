@@ -5,6 +5,7 @@ import Settings from '../pages/SettingsPage';
 import PictureQuestion from '../pages/PictureQuestion';
 import ArtistQuestion from '../pages/ArtistQuestion';
 import QuitModal from '../pages/QuitModal';
+import EndGameModal from '../pages/EndGameModal';
 
 const classes = {
   Main,
@@ -14,6 +15,7 @@ const classes = {
   PictureQuestion,
   ArtistQuestion,
   QuitModal,
+  EndGameModal,
 };
 
 export default class ControllerPages {

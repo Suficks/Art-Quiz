@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-
 export default class AnswerModal {
   render() {
     return `
@@ -16,20 +14,20 @@ export default class AnswerModal {
     `;
   }
 
-  modalToggle() {
-    const pictures = document.querySelectorAll('.artist__img');
+  // modalToggle() {
+  //   const pictures = document.querySelectorAll('.artist__img');
 
-    pictures?.forEach((item) => {
-      new AnswerModal().modalToggleSetListener(item);
-    });
-  }
+  //   pictures?.forEach((item) => {
+  //     new AnswerModal().modalToggleSetListener(item);
+  //   });
+  // }
 
-  modalToggleSetListener(btn) {
+  modalToggle(btn) {
     const answerModal = document.querySelector('.answer__modal');
     const overlay = document.querySelector('.overlay');
 
     btn.addEventListener('click', () => {
-      answerModal.classList.toggle('answer__modal__active');
+      answerModal.classList.toggle('modal__active');
       overlay.classList.toggle('overlay__active');
     });
   }

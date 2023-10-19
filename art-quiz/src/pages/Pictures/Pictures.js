@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-
 export default class Pictures {
   render() {
     const mainContainer = document.querySelector('.main__wrapper');

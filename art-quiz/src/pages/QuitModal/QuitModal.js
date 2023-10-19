@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 export default class QuitModal {
   render(page) {
     return `
@@ -28,7 +27,7 @@ export default class QuitModal {
     const overlay = document.querySelector('.overlay');
 
     btn.addEventListener('click', () => {
-      quitGameModal.classList.toggle('quit__game__modal__active');
+      quitGameModal.classList.toggle('modal__active');
       overlay.classList.toggle('overlay__active');
     });
   }

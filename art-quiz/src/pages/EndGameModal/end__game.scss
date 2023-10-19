@@ -1,10 +1,10 @@
-.quit__game__modal {
+.end__game {
   position: absolute;
   top: 50%;
   left: 50%;
   z-index: 3;
 
-  max-width: 450px;
+  max-width: 350px;
   width: 95%;
   padding: 25px;
   box-sizing: border-box;
@@ -12,43 +12,42 @@
   background-color: white;
   text-align: center;
   border-radius: 20px;
-  @include gilroy (24px, 500, 24px);
   transform: translate(-50%, -600%);
   transition: 0.5s ease;
 
-  .modal__close {
-    display: block;
-    margin: 0;
-    margin-left: auto;
-    width: 25px;
-    height: 25px;
+  .end__game__text {
+    @include gilroy (32px, 700, 32px);
   }
 
-  .quit__text {
-    margin: 40px 0;
+  .final__result {
+    @include gilroy (26px, 700, 26px);
   }
 
-  .quit__buttons__wrap {
+  .end__img {
+    width: 140px;
+    height: 150px;
+  }
+
+  .buttons__containter {
     display: flex;
-    gap: 15px;
+    justify-content: space-between;
   }
 
-  .button {
+  .end__btn {
     display: inline-block;
     padding: 15px;
-    max-width: 287px;
     width: 100%;
 
     color: black;
     border: 1.5px solid black;
 
+    &:first-child {
+      margin-right: 20px;
+    }
+
     &:hover {
       background-color: #FFBCA2;
       border: 1.5px solid transparent;
-    }
-
-    &:nth-child(2) {
-      margin: 0;
     }
   }
 }
