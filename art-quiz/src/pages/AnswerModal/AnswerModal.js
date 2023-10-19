@@ -5,31 +5,23 @@ export default class AnswerModal {
     return `
       <div class="answer__modal">
         <div class="current__img__wrap">
-          <div class="answer"></div>
-          <img src="https://raw.githubusercontent.com/Suficks/image-data/master/full/6full.jpg" alt="img" class="current__img">
+          <img src="assets/incorrect-icon.svg" alt="icon" class="correct__icon"></img>
+          <img src="" alt="img" class="current__img">
         </div>
-        <p class="current__name">Feast at Levi's House</p>
-        <p class="current__author">Claude Mone</p>
-        <p class="current__year">1885</p>
+        <p class="current__name"></p>
+        <p class="current__author"></p>
+        <p class="current__year"></p>
         <button class="next__button">Next</button>
       </div>
     `;
   }
 
   modalToggle() {
-    const answers = document.querySelectorAll('.question__btn');
     const pictures = document.querySelectorAll('.artist__img');
-    const nextBtn = document.querySelector('.next__button');
-
-    answers?.forEach((item) => {
-      new AnswerModal().modalToggleSetListener(item);
-    });
 
     pictures?.forEach((item) => {
       new AnswerModal().modalToggleSetListener(item);
     });
-
-    new AnswerModal().modalToggleSetListener(nextBtn);
   }
 
   modalToggleSetListener(btn) {

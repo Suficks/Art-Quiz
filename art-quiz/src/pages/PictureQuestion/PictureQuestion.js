@@ -45,9 +45,9 @@ export default class PictureQuestion {
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', template);
     this.getAuthors();
-    new AnswerModal().modalToggle();
     new QuitModal().modalToggle();
     // setEventListener();
+    this.correctAnswer();
     this.nextQuestion();
   }
 
@@ -87,6 +87,39 @@ export default class PictureQuestion {
     }
   }
 
+  correctAnswer() {
+    const { pictureNum, data } = this.state;
+    const { author, name, year } = data[pictureNum];
+
+    const answers = document.querySelectorAll('.question__btn');
+    const correctAuthor = document.querySelector('.current__author');
+    const correctName = document.querySelector('.current__name');
+    const correctYear = document.querySelector('.current__year');
+    const currentPic = document.querySelector('.current__img');
+    const questionPic = document.querySelector('.question__img');
+    const progressDots = [...document.querySelectorAll('.progress__dot')];
+    const correctIcon = document.querySelector('.correct__icon');
+
+    const dotsCount = pictureNum % 10;
+
+    answers.forEach((item) => {
+      item.addEventListener('click', () => {
+        if (item.textContent === author) {
+          correctIcon.src = 'assets/correct-icon.svg';
+          progressDots[dotsCount].style.backgroundColor = '#47A76A';
+        } else {
+          correctIcon.src = 'assets/incorrect-icon.svg';
+          progressDots[dotsCount].style.backgroundColor = '#FFBCA2';
+        }
+        currentPic.src = questionPic.src;
+        correctAuthor.innerHTML = author;
+        correctName.innerHTML = name;
+        correctYear.innerHTML = year;
+      });
+      new AnswerModal().modalToggleSetListener(item);
+    });
+  }
+
   nextQuestion() {
     const nextBtn = document.querySelector('.next__button');
 
@@ -94,7 +127,9 @@ export default class PictureQuestion {
       const questionPic = document.querySelector('.question__img');
       this.state.pictureNum += 1;
       questionPic.src = `https://raw.githubusercontent.com/Suficks/image-data/master/img/${this.state.pictureNum}.jpg`;
-      this.render();
+      this.getAuthors();
+      this.correctAnswer();
     });
+    new AnswerModal().modalToggleSetListener(nextBtn);
   }
 }
