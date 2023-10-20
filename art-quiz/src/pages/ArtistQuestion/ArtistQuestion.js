@@ -1,7 +1,7 @@
 import QuitModal from '../QuitModal';
 import AnswerModal from '../AnswerModal';
 import EndGameModal from '../EndGameModal';
-import { audioFiles } from '../PictureQuestion';
+import PictureQuestion, { audioFiles } from '../PictureQuestion';
 
 const QUESTION_LENGTH = 10;
 
@@ -176,7 +176,7 @@ export default class ArtistQuestion {
       nexeQuizBtn.innerHTML = 'Next Quiz';
       nexeQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
       audioFiles[3].play();
-      this.setLocalStorageData();
+      new PictureQuestion().setLocalStorageData();
     } else {
       endImg.src = 'assets/trophy.svg';
       finalText.innerHTML = 'Congratulations!';
@@ -185,13 +185,8 @@ export default class ArtistQuestion {
       nexeQuizBtn.innerHTML = 'Next Quiz';
       nexeQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
       audioFiles[2].play();
-      this.setLocalStorageData();
+      new PictureQuestion().setLocalStorageData();
     }
     new EndGameModal().modalToggle();
-  }
-
-  setLocalStorageData() {
-    const { correctAnswerCount, dataCategory } = this.state;
-    localStorage.setItem(dataCategory, JSON.stringify(correctAnswerCount));
   }
 }

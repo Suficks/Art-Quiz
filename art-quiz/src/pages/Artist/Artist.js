@@ -1,3 +1,5 @@
+import Pictures from '../Pictures';
+
 export default class Artist {
   render() {
     const mainContainer = document.querySelector('.main__wrapper');
@@ -16,6 +18,11 @@ export default class Artist {
 
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', template);
+
+    document.querySelectorAll('.button__controller').forEach((item) => {
+      const attribute = item.getAttribute('data-category');
+      new Pictures().completedGames(attribute, item);
+    });
   }
 
   cardFill() {
@@ -32,7 +39,7 @@ export default class Artist {
         <div class="card__item">
           <div class="card__title__wrap">
             <span class="card__title">${categories[(i - PICSTART) / PICPERCATEGORIE]}</span>
-            <p class="score"></p>
+            <p class="score">${new Pictures().getLocalStorageData(i)}</p>
           </div>
           <div class="card__img__wrap">
             <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="ArtistQuestion" data-category="${i}" alt="cardPic">
