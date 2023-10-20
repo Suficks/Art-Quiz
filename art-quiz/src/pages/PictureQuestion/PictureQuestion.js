@@ -4,6 +4,29 @@ import EndGameModal from '../EndGameModal';
 
 const QUESTION_LENGTH = 10;
 
+const correctAnswerAudio = new Audio();
+correctAnswerAudio.src = './assets/correct-sound.mp3';
+
+const incorrectAnswerAudio = new Audio();
+incorrectAnswerAudio.src = './assets/incorrect-sound.mp3';
+
+const winningAudio = new Audio();
+winningAudio.src = './assets/winning-sound.mp3';
+
+const perfectResultAudio = new Audio();
+perfectResultAudio.src = './assets/perfect-sound.mp3';
+
+const loseAudio = new Audio();
+loseAudio.src = './assets/lose-sound.mp3';
+
+export const audioFiles = [
+  correctAnswerAudio,
+  incorrectAnswerAudio,
+  winningAudio,
+  perfectResultAudio,
+  loseAudio,
+];
+
 export default class PictureQuestion {
   constructor() {
     this.state = {
@@ -116,9 +139,11 @@ export default class PictureQuestion {
           correctIcon.src = 'assets/correct-icon.svg';
           progressDots[dotsCount].style.backgroundColor = '#47A76A';
           this.state.correctAnswerCount += 1;
+          correctAnswerAudio.play();
         } else {
           correctIcon.src = 'assets/incorrect-icon.svg';
           progressDots[dotsCount].style.backgroundColor = '#FFBCA2';
+          incorrectAnswerAudio.play();
         }
         currentPic.src = questionPic.src;
         correctAuthor.innerHTML = author;
@@ -144,6 +169,7 @@ export default class PictureQuestion {
       homeBtn.innerHTML = 'No';
       nexeQuizBtn.innerHTML = 'Yes';
       nexeQuizBtn.setAttribute('data-category', dataCategory);
+      loseAudio.play();
     } else if (correctAnswerCount === 10) {
       endImg.src = 'assets/stars.svg';
       endImg.style.width = '240px';
@@ -152,12 +178,17 @@ export default class PictureQuestion {
       homeBtn.innerHTML = 'Home';
       nexeQuizBtn.innerHTML = 'Next Quiz';
       nexeQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
+      perfectResultAudio.play();
+      this.setLocalStorageData();
     } else {
       endImg.src = 'assets/trophy.svg';
       finalText.innerHTML = 'Congratulations!';
       result.innerHTML = `${correctAnswerCount} / 10`;
       homeBtn.innerHTML = 'Home';
       nexeQuizBtn.innerHTML = 'Next Quiz';
+      nexeQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
+      winningAudio.play();
+      this.setLocalStorageData();
     }
     new EndGameModal().modalToggle();
   }
@@ -180,5 +211,10 @@ export default class PictureQuestion {
       this.answerCheck();
     });
     new AnswerModal().modalToggle(nextBtn);
+  }
+
+  setLocalStorageData() {
+    const { correctAnswerCount, dataCategory } = this.state;
+    localStorage.setItem(dataCategory, JSON.stringify(correctAnswerCount));
   }
 }

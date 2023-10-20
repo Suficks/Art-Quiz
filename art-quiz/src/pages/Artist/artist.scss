@@ -66,6 +66,7 @@
 
   .card__img__wrap {
     position: relative;
+    margin-top: 7px;
     border-radius: 20px;
     overflow: hidden
   }
@@ -75,11 +76,13 @@
   }
 
   .score {
+    margin: 0;
     color: #FFBCA2;
   }
 
   .card__img {
     width: 100%;
+
     cursor: pointer;
     transition: 0.3s ease;
     filter: grayscale(1);
@@ -87,6 +90,10 @@
     &:hover {
       transform: scale(1.05);
     }
+  }
+
+  .card__img__color {
+    filter: none;
   }
 
   .score__btn {
@@ -102,12 +109,18 @@
     border: none;
     transition: 0.3s ease;
     opacity: 0;
+    pointer-events: none;
     @include gilroy (22px, 500, 22px);
     color: white;
 
     &:hover {
       background-color: #ff966d;
     }
+  }
+
+  .score__active {
+    opacity: 1;
+    pointer-events: all;
   }
 
   @media screen and (max-width: 1024px) {
