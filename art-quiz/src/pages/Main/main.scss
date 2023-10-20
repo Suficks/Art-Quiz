@@ -148,6 +148,11 @@ a {
   color: #FFF;
 }
 
+.github__wrap {
+  display: flex;
+  gap: 5px;
+}
+
 .link {
   color: white;
   transition: 0.3s ease;
@@ -175,6 +180,14 @@ a {
   .footer {
     .logo {
       width: 70px;
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .footer__item {
+    &:first-child {
+      display: none;
     }
   }
 }
