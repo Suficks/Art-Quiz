@@ -73,10 +73,10 @@ export default class PictureQuestion {
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', template);
     this.getAuthors();
-    new QuitModal().modalToggle();
     setEventListener();
     this.answerCheck();
     this.nextQuestion();
+    new QuitModal().modalToggle();
   }
 
   async dataFetch() {
