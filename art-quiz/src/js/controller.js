@@ -6,7 +6,8 @@ import PictureQuestion from '../pages/PictureQuestion';
 import ArtistQuestion from '../pages/ArtistQuestion';
 import QuitModal from '../pages/QuitModal';
 import EndGameModal from '../pages/EndGameModal';
-import Score from '../pages/Score';
+import PictureScore from '../pages/PictureScore';
+import ArtistScore from '../pages/ArtistScore';
 
 const classes = {
   Main,
@@ -17,7 +18,8 @@ const classes = {
   ArtistQuestion,
   QuitModal,
   EndGameModal,
-  Score,
+  PictureScore,
+  ArtistScore,
 };
 
 export default class ControllerPages {

@@ -1,4 +1,4 @@
-export default class Score {
+export default class PictureScore {
   render(_, dataCategory) {
     const mainContainer = document.querySelector('.main__wrapper');
 

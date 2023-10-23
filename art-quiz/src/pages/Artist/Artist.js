@@ -19,7 +19,7 @@ export default class Artist {
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', template);
 
-    document.querySelectorAll('.button__controller').forEach((item) => {
+    document.querySelectorAll('.score__btn').forEach((item) => {
       const attribute = item.getAttribute('data-category');
       new Pictures().completedGames(attribute, item);
     });
@@ -43,7 +43,7 @@ export default class Artist {
           </div>
           <div class="card__img__wrap">
             <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="ArtistQuestion" data-category="${i}" alt="cardPic">
-            <button class="score__btn">Score</button>
+            <button class="score__btn button__controller" data-page="ArtistScore" data-category="${i}">Score</button>
           </div>
         </div>
         `;

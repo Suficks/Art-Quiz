@@ -9,6 +9,11 @@
     cursor: auto;
   }
 
+  .card__item {
+    border-radius: 20px;
+    overflow: hidden
+  }
+
   .card__img {
     border-radius: 20px;
     cursor: auto;
@@ -20,6 +25,10 @@
 
   .img__correct {
     filter: none;
+  }
+
+  .img__incorrect {
+    filter: blur(20px);
   }
 
   @media screen and (max-width: 1120px) {

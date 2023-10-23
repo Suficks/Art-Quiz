@@ -40,7 +40,7 @@ export default class Pictures {
           </div>
           <div class="card__img__wrap">
             <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="PictureQuestion" data-category="${i}" alt="cardPic">
-            <button class="score__btn button__controller" data-page="Score" data-category="${i}">Score</button>
+            <button class="score__btn button__controller" data-page="PictureScore" data-category="${i}">Score</button>
           </div>
         </div>
         `;

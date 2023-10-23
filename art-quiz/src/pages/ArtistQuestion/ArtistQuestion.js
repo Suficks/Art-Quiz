@@ -1,7 +1,7 @@
 import QuitModal from '../QuitModal';
 import AnswerModal from '../AnswerModal';
 import EndGameModal from '../EndGameModal';
-import PictureQuestion, { audioFiles } from '../PictureQuestion';
+import { audioFiles } from '../PictureQuestion';
 
 const QUESTION_LENGTH = 10;
 
@@ -12,6 +12,7 @@ export default class ArtistQuestion {
       authorNum: 0,
       data: [],
       correctAnswerCount: 0,
+      answerForEachPic: [],
     };
   }
 
@@ -116,10 +117,12 @@ export default class ArtistQuestion {
           correctIcon.src = 'assets/correct-icon.svg';
           progressDots[dotsCount].style.backgroundColor = '#47A76A';
           this.state.correctAnswerCount += 1;
+          this.state.answerForEachPic.push(true);
           audioFiles[0].play();
         } else {
           correctIcon.src = 'assets/incorrect-icon.svg';
           progressDots[dotsCount].style.backgroundColor = '#FFBCA2';
+          this.state.answerForEachPic.push(false);
           audioFiles[1].play();
         }
         currentPic.src = `https://raw.githubusercontent.com/Suficks/image-data/master/img/${authorNum}.jpg`;
@@ -176,7 +179,7 @@ export default class ArtistQuestion {
       nexeQuizBtn.innerHTML = 'Next Quiz';
       nexeQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
       audioFiles[3].play();
-      new PictureQuestion().setLocalStorageData();
+      this.setLocalStorageData();
     } else {
       endImg.src = 'assets/trophy.svg';
       finalText.innerHTML = 'Congratulations!';
@@ -185,8 +188,14 @@ export default class ArtistQuestion {
       nexeQuizBtn.innerHTML = 'Next Quiz';
       nexeQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
       audioFiles[2].play();
-      new PictureQuestion().setLocalStorageData();
+      this.setLocalStorageData();
     }
     new EndGameModal().modalToggle();
+  }
+
+  setLocalStorageData() {
+    const { correctAnswerCount, dataCategory, answerForEachPic } = this.state;
+    localStorage.setItem(dataCategory, JSON.stringify(correctAnswerCount));
+    localStorage.setItem(`${dataCategory}-result`, JSON.stringify(answerForEachPic));
   }
 }
