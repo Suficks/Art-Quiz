@@ -2,6 +2,7 @@ import QuitModal from '../QuitModal';
 import AnswerModal from '../AnswerModal';
 import EndGameModal from '../EndGameModal';
 import { audioFiles } from '../PictureQuestion';
+import { isTimeGame, timeToAnswer } from '../SettingsPage/Settings';
 
 const QUESTION_LENGTH = 10;
 
@@ -27,6 +28,10 @@ export default class ArtistQuestion {
     const template = `
       <div class="question">
         <img class="close picture__close" src="assets/close-logo.svg" alt="close">
+        <div class="progress__wrap">
+          <progress class="progress__bar" value="0" max="100"></progress>
+          <span class="timer">0:00</span>
+        </div>
         <p class="main__question">Which is ${this.state.data[dataCategory].author} picture?</p>
         <div class="img__container"></div>
         <div class="progress__dots">
@@ -55,6 +60,7 @@ export default class ArtistQuestion {
     this.answerCheck();
     this.nextQuestion();
     new QuitModal().modalToggle();
+    this.setTimeGame();
   }
 
   async dataFetch() {
@@ -129,8 +135,8 @@ export default class ArtistQuestion {
         correctAuthor.innerHTML = author;
         correctName.innerHTML = name;
         correctYear.innerHTML = year;
+        new AnswerModal().modalToggle();
       });
-      new AnswerModal().modalToggle(item);
     });
   }
 
@@ -150,8 +156,8 @@ export default class ArtistQuestion {
       nextAuthor.innerHTML = `Which is ${data[this.state.authorNum].author} picture?`;
       this.getPictures();
       this.answerCheck();
+      new AnswerModal().modalToggle();
     });
-    new AnswerModal().modalToggle(nextBtn);
   }
 
   endGame() {
@@ -197,5 +203,43 @@ export default class ArtistQuestion {
     const { correctAnswerCount, dataCategory, answerForEachPic } = this.state;
     localStorage.setItem(dataCategory, JSON.stringify(correctAnswerCount));
     localStorage.setItem(`${dataCategory}-result`, JSON.stringify(answerForEachPic));
+  }
+
+  setTimeGame() {
+    const progressBar = document.querySelector('.progress__bar');
+    const progressWrap = document.querySelector('.progress__wrap');
+    const progressTime = document.querySelector('.timer');
+    const newTime = timeToAnswer * 10;
+
+    let minutes = 0;
+    let seconds = 0;
+    let commonTime = 0;
+    let start = 0;
+
+    if (isTimeGame) {
+      progressWrap.classList.add('progress__active');
+
+      const intervalId = setInterval(() => {
+        if (start > 100) clearInterval(intervalId);
+        else progressBar.value = start;
+        start += 1;
+      }, newTime);
+
+      const timer = setInterval(() => {
+        if (seconds > 9) progressTime.innerHTML = `${minutes}:${seconds}`;
+        else progressTime.innerHTML = `${minutes}:0${seconds}`;
+        seconds += 1;
+        commonTime += 1;
+        if (seconds > 59) {
+          minutes += 1;
+          seconds = 0;
+        }
+        if (commonTime > timeToAnswer) {
+          clearInterval(timer);
+          new AnswerModal().modalClose();
+          this.endGame();
+        }
+      }, 1000);
+    }
   }
 }

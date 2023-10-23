@@ -14,21 +14,17 @@ export default class AnswerModal {
     `;
   }
 
-  // modalToggle() {
-  //   const pictures = document.querySelectorAll('.artist__img');
-
-  //   pictures?.forEach((item) => {
-  //     new AnswerModal().modalToggleSetListener(item);
-  //   });
-  // }
-
-  modalToggle(btn) {
+  modalToggle() {
     const answerModal = document.querySelector('.answer__modal');
     const overlay = document.querySelector('.overlay');
+    answerModal.classList.toggle('modal__active');
+    overlay.classList.toggle('overlay__active');
+  }
 
-    btn.addEventListener('click', () => {
-      answerModal.classList.toggle('modal__active');
-      overlay.classList.toggle('overlay__active');
-    });
+  modalClose() {
+    const answerModal = document.querySelector('.answer__modal');
+    const overlay = document.querySelector('.overlay');
+    answerModal.classList.remove('modal__active');
+    overlay.classList.remove('overlay__active');
   }
 }

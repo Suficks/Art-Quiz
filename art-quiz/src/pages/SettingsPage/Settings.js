@@ -1,9 +1,10 @@
+/* eslint-disable import/no-mutable-exports */
 import { audioFiles } from '../PictureQuestion';
 
+export let isTimeGame = false;
+export let timeToAnswer = 20;
 let isSave = false;
 let savedVolume = 50;
-let isTimeGame = false;
-let timeToAnswer = 20;
 
 export default class Settings {
   render(pageBeforeSettings) {

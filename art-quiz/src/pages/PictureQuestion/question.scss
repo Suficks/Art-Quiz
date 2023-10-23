@@ -80,6 +80,39 @@
     cursor: pointer;
   }
 
+  progress::-webkit-progress-value {
+    background-color: #FFBCA2;
+    transition: 0.5s ease;
+  }
+
+  .progress__wrap {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translate(-42%, -1500%);
+    max-width: 715px;
+    width: 100%;
+  }
+
+  .progress__bar {
+    width: 100%;
+    height: 4px;
+
+    background-color: #A4A4A4;
+  }
+
+  .timer {
+    @include gilroy (18px, 500, 18px);
+    color: white;
+  }
+
+  .progress__active {
+    transform: translate(-42%, 0);
+  }
+
   .overlay {
     width: 100%;
     height: 100%;
@@ -109,6 +142,12 @@
   @media screen and (max-width: 1045px) {
     .buttons__wrap {
       grid-template-columns: repeat(2, 230px);
+    }
+  }
+
+  @media screen and (max-width: 935px) {
+    .progress__wrap {
+      max-width: calc(250px + (715 - 250) * ((100vw - 320px) / (935 - 320)));
     }
   }
 

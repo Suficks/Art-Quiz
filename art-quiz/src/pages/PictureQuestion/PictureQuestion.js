@@ -1,6 +1,8 @@
+/* eslint-disable import/no-cycle */
 import QuitModal from '../QuitModal';
 import AnswerModal from '../AnswerModal';
 import EndGameModal from '../EndGameModal';
+import { isTimeGame, timeToAnswer } from '../SettingsPage/Settings';
 
 const QUESTION_LENGTH = 10;
 
@@ -49,6 +51,10 @@ export default class PictureQuestion {
     const template = `
       <div class="question">
         <img class="close picture__close" src="assets/close-logo.svg" alt="close">
+        <div class="progress__wrap">
+          <progress class="progress__bar" value="0" max="100"></progress>
+          <span class="timer">0:00</span>
+        </div>
         <p class="main__question">Who is the author of this picture?</p>
         <img class="question__img" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${this.state.pictureNum}.jpg" alt="question">
         <div class="buttons__wrap"></div>
@@ -78,6 +84,7 @@ export default class PictureQuestion {
     this.answerCheck();
     this.nextQuestion();
     new QuitModal().modalToggle();
+    this.setTimeGame();
   }
 
   async dataFetch() {
@@ -152,8 +159,8 @@ export default class PictureQuestion {
         correctAuthor.innerHTML = author;
         correctName.innerHTML = name;
         correctYear.innerHTML = year;
+        new AnswerModal().modalToggle();
       });
-      new AnswerModal().modalToggle(item);
     });
   }
 
@@ -173,8 +180,8 @@ export default class PictureQuestion {
       questionPic.src = `https://raw.githubusercontent.com/Suficks/image-data/master/img/${this.state.pictureNum}.jpg`;
       this.getAuthors();
       this.answerCheck();
+      new AnswerModal().modalToggle();
     });
-    new AnswerModal().modalToggle(nextBtn);
   }
 
   endGame() {
@@ -183,15 +190,15 @@ export default class PictureQuestion {
     const finalText = document.querySelector('.end__game__text');
     const result = document.querySelector('.final__result');
     const homeBtn = document.querySelector('.home__btn');
-    const nexeQuizBtn = document.querySelector('.next__quiz__btn');
+    const nextQuizBtn = document.querySelector('.next__quiz__btn');
 
     if (correctAnswerCount < 5) {
       endImg.src = 'assets/lose-trophy.svg';
       finalText.innerHTML = 'Game over';
       result.innerHTML = 'Play again?';
       homeBtn.innerHTML = 'No';
-      nexeQuizBtn.innerHTML = 'Yes';
-      nexeQuizBtn.setAttribute('data-category', dataCategory);
+      nextQuizBtn.innerHTML = 'Yes';
+      nextQuizBtn.setAttribute('data-category', dataCategory);
       loseAudio.play();
     } else if (correctAnswerCount === 10) {
       endImg.src = 'assets/stars.svg';
@@ -199,8 +206,8 @@ export default class PictureQuestion {
       finalText.innerHTML = 'Grand result';
       result.innerHTML = 'Congratulations!';
       homeBtn.innerHTML = 'Home';
-      nexeQuizBtn.innerHTML = 'Next Quiz';
-      nexeQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
+      nextQuizBtn.innerHTML = 'Next Quiz';
+      nextQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
       perfectResultAudio.play();
       this.setLocalStorageData();
     } else {
@@ -208,8 +215,8 @@ export default class PictureQuestion {
       finalText.innerHTML = 'Congratulations!';
       result.innerHTML = `${correctAnswerCount} / 10`;
       homeBtn.innerHTML = 'Home';
-      nexeQuizBtn.innerHTML = 'Next Quiz';
-      nexeQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
+      nextQuizBtn.innerHTML = 'Next Quiz';
+      nextQuizBtn.setAttribute('data-category', dataCategory + QUESTION_LENGTH);
       winningAudio.play();
       this.setLocalStorageData();
     }
@@ -220,5 +227,43 @@ export default class PictureQuestion {
     const { correctAnswerCount, dataCategory, answerForEachPic } = this.state;
     localStorage.setItem(dataCategory, JSON.stringify(correctAnswerCount));
     localStorage.setItem(`${dataCategory}-result`, JSON.stringify(answerForEachPic));
+  }
+
+  setTimeGame() {
+    const progressBar = document.querySelector('.progress__bar');
+    const progressWrap = document.querySelector('.progress__wrap');
+    const progressTime = document.querySelector('.timer');
+    const newTime = timeToAnswer * 10;
+
+    let minutes = 0;
+    let seconds = 0;
+    let commonTime = 0;
+    let start = 0;
+
+    if (isTimeGame) {
+      progressWrap.classList.add('progress__active');
+
+      const intervalId = setInterval(() => {
+        if (start > 100) clearInterval(intervalId);
+        else progressBar.value = start;
+        start += 1;
+      }, newTime);
+
+      const timer = setInterval(() => {
+        if (seconds > 9) progressTime.innerHTML = `${minutes}:${seconds}`;
+        else progressTime.innerHTML = `${minutes}:0${seconds}`;
+        seconds += 1;
+        commonTime += 1;
+        if (seconds > 59) {
+          minutes += 1;
+          seconds = 0;
+        }
+        if (commonTime > timeToAnswer) {
+          clearInterval(timer);
+          new AnswerModal().modalClose();
+          this.endGame();
+        }
+      }, 1000);
+    }
   }
 }
