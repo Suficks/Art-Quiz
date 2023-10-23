@@ -1,0 +1,39 @@
+.score__page {
+  .page__header {
+    width: 50%
+  }
+
+  .score {
+    padding: 0;
+    border: none;
+    cursor: auto;
+  }
+
+  .card__img {
+    border-radius: 20px;
+    cursor: auto;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .img__correct {
+    filter: none;
+  }
+
+  @media screen and (max-width: 1120px) {
+    .page__header {
+      width: 65%;
+    }
+  }
+
+  @media screen and (max-width: 875px) {
+    .page__header {
+      width: 80%;
+      gap: 30px;
+    }
+  }
+
+
+}

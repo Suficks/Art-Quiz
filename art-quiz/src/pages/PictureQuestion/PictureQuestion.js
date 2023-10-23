@@ -154,6 +154,26 @@ export default class PictureQuestion {
     });
   }
 
+  nextQuestion() {
+    const nextBtn = document.querySelector('.next__button');
+
+    nextBtn.addEventListener('click', () => {
+      const { pictureNum, dataCategory } = this.state;
+
+      if (pictureNum === dataCategory + QUESTION_LENGTH - 1) {
+        this.endGame();
+        return;
+      }
+
+      const questionPic = document.querySelector('.question__img');
+      this.state.pictureNum += 1;
+      questionPic.src = `https://raw.githubusercontent.com/Suficks/image-data/master/img/${this.state.pictureNum}.jpg`;
+      this.getAuthors();
+      this.answerCheck();
+    });
+    new AnswerModal().modalToggle(nextBtn);
+  }
+
   endGame() {
     const { correctAnswerCount, dataCategory } = this.state;
     const endImg = document.querySelector('.end__img');
@@ -191,26 +211,6 @@ export default class PictureQuestion {
       this.setLocalStorageData();
     }
     new EndGameModal().modalToggle();
-  }
-
-  nextQuestion() {
-    const nextBtn = document.querySelector('.next__button');
-
-    nextBtn.addEventListener('click', () => {
-      const { pictureNum, dataCategory } = this.state;
-
-      if (pictureNum === dataCategory + QUESTION_LENGTH - 1) {
-        this.endGame();
-        return;
-      }
-
-      const questionPic = document.querySelector('.question__img');
-      this.state.pictureNum += 1;
-      questionPic.src = `https://raw.githubusercontent.com/Suficks/image-data/master/img/${this.state.pictureNum}.jpg`;
-      this.getAuthors();
-      this.answerCheck();
-    });
-    new AnswerModal().modalToggle(nextBtn);
   }
 
   setLocalStorageData() {

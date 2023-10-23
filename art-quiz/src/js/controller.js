@@ -6,6 +6,7 @@ import PictureQuestion from '../pages/PictureQuestion';
 import ArtistQuestion from '../pages/ArtistQuestion';
 import QuitModal from '../pages/QuitModal';
 import EndGameModal from '../pages/EndGameModal';
+import Score from '../pages/Score';
 
 const classes = {
   Main,
@@ -16,6 +17,7 @@ const classes = {
   ArtistQuestion,
   QuitModal,
   EndGameModal,
+  Score,
 };
 
 export default class ControllerPages {
@@ -33,6 +35,7 @@ export default class ControllerPages {
 
   changePage() {
     const { currentPage, pageBeforeSettings, dataCategory } = this.state;
+
     new classes[currentPage]().render(
       pageBeforeSettings,
       dataCategory,

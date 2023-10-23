@@ -17,7 +17,7 @@ export default class Pictures {
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', template);
 
-    document.querySelectorAll('.button__controller').forEach((item) => {
+    document.querySelectorAll('.score__btn').forEach((item) => {
       const attribute = item.getAttribute('data-category');
       this.completedGames(attribute, item);
     });
@@ -40,7 +40,7 @@ export default class Pictures {
           </div>
           <div class="card__img__wrap">
             <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="PictureQuestion" data-category="${i}" alt="cardPic">
-            <button class="score__btn">Score</button>
+            <button class="score__btn button__controller" data-page="Score" data-category="${i}">Score</button>
           </div>
         </div>
         `;
@@ -59,12 +59,12 @@ export default class Pictures {
   }
 
   completedGames(key, item) {
-    const scoreBtn = item.nextElementSibling;
+    const img = item.previousElementSibling;
     const localStorageData = JSON.parse(localStorage.getItem(key));
 
     if (localStorageData !== null) {
-      scoreBtn.classList.add('score__active');
-      item.classList.add('card__img__color');
+      item.classList.add('score__active');
+      img.classList.add('card__img__color');
     }
   }
 }
