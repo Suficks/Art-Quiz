@@ -39,6 +39,7 @@ export default class Settings {
           <button class="button default__btn">Default</button>
           <button class="button save__btn">Save</button>  
         </div>
+        <div class="save__modal">Settings save!</div>
       </div>
     `;
 
@@ -95,6 +96,7 @@ export default class Settings {
     const checkbox = document.querySelector('.time__checkbox');
     const timeInput = document.querySelector('.time');
     const checkboxState = document.querySelector('.time__on');
+    const saveModal = document.querySelector('.save__modal');
 
     if (isSave) {
       volumeInput.value = savedVolume;
@@ -118,6 +120,10 @@ export default class Settings {
 
     saveBtn.addEventListener('click', () => {
       isSave = true;
+      saveModal.classList.add('save__modal__active');
+      setTimeout(() => {
+        saveModal.classList.remove('save__modal__active');
+      }, 2000);
     });
   }
 }
