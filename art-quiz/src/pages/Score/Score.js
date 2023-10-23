@@ -17,6 +17,7 @@ export default class Score {
 
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', template);
+    this.setCorrectImg(dataCategory);
   }
 
   cardFill(dataCategory) {
@@ -34,5 +35,21 @@ export default class Score {
     }
 
     return result;
+  }
+
+  setCorrectImg(key) {
+    const array = this.getLocalStorageData(`${key}-result`);
+    const imgs = document.querySelectorAll('.card__img');
+
+    imgs.forEach((item, index) => {
+      if (array[index] === true) {
+        item.classList.add('img__correct');
+      }
+    });
+  }
+
+  getLocalStorageData(key) {
+    const localStorageData = JSON.parse(localStorage.getItem(key));
+    return localStorageData;
   }
 }

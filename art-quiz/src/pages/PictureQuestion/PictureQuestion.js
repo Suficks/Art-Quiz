@@ -34,6 +34,7 @@ export default class PictureQuestion {
       pictureNum: 0,
       data: [],
       correctAnswerCount: 0,
+      answerForEachPic: [],
     };
   }
 
@@ -139,10 +140,12 @@ export default class PictureQuestion {
           correctIcon.src = 'assets/correct-icon.svg';
           progressDots[dotsCount].style.backgroundColor = '#47A76A';
           this.state.correctAnswerCount += 1;
+          this.state.answerForEachPic.push(true);
           correctAnswerAudio.play();
         } else {
           correctIcon.src = 'assets/incorrect-icon.svg';
           progressDots[dotsCount].style.backgroundColor = '#FFBCA2';
+          this.state.answerForEachPic.push(false);
           incorrectAnswerAudio.play();
         }
         currentPic.src = questionPic.src;
@@ -214,7 +217,8 @@ export default class PictureQuestion {
   }
 
   setLocalStorageData() {
-    const { correctAnswerCount, dataCategory } = this.state;
+    const { correctAnswerCount, dataCategory, answerForEachPic } = this.state;
     localStorage.setItem(dataCategory, JSON.stringify(correctAnswerCount));
+    localStorage.setItem(`${dataCategory}-result`, JSON.stringify(answerForEachPic));
   }
 }
