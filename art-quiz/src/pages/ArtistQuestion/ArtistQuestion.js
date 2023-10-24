@@ -22,8 +22,6 @@ export default class ArtistQuestion {
 
     await this.dataFetch();
 
-    const mainContainer = document.querySelector('.main__wrapper');
-
     const template = `
       <div class="question">
         <img class="close picture__close" src="assets/close-logo.svg" alt="close">
@@ -50,16 +48,17 @@ export default class ArtistQuestion {
         ${new EndGameModal().render('Artist', 'ArtistQuestion')}
         <div class="overlay"></div>
       </div>
-      `;
+    `;
 
-    mainContainer.innerHTML = '';
-    mainContainer.insertAdjacentHTML('beforeend', template);
-    this.getPictures();
-    setEventListener();
-    this.answerCheck();
-    this.nextQuestion();
-    new QuitModal().modalToggle();
-    this.setTimeGame();
+    this.pageShow(template);
+    setTimeout(() => {
+      this.getPictures();
+      setEventListener();
+      this.answerCheck();
+      this.nextQuestion();
+      new QuitModal().modalToggle();
+      this.setTimeGame();
+    }, 800);
   }
 
   async dataFetch() {
@@ -97,6 +96,17 @@ export default class ArtistQuestion {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  pageShow(template) {
+    const mainContainer = document.querySelector('.main__wrapper');
+
+    mainContainer.style.opacity = '0';
+    setTimeout(() => {
+      mainContainer.innerHTML = '';
+      mainContainer.insertAdjacentHTML('beforeend', template);
+      mainContainer.style.opacity = '1';
+    }, 800);
   }
 
   answerCheck() {
@@ -146,6 +156,7 @@ export default class ArtistQuestion {
       const { authorNum, dataCategory, data } = this.state;
 
       if (authorNum === dataCategory + QUESTION_LENGTH - 1) {
+        new AnswerModal().modalClose();
         this.endGame();
         return;
       }
@@ -195,7 +206,7 @@ export default class ArtistQuestion {
       audioFiles[2].play();
       this.setLocalStorageData();
     }
-    new EndGameModal().modalToggle();
+    new EndGameModal().modalOpen();
   }
 
   setLocalStorageData() {
@@ -212,6 +223,7 @@ export default class ArtistQuestion {
     const progressBar = document.querySelector('.progress__bar');
     const progressWrap = document.querySelector('.progress__wrap');
     const progressTime = document.querySelector('.timer');
+    const endGameModal = document.querySelector('.end__game');
     const newTime = this.getLocalStorageData().timeToAnswer * 10;
 
     let minutes = 0;
@@ -223,7 +235,7 @@ export default class ArtistQuestion {
       progressWrap.classList.add('progress__active');
 
       const intervalId = setInterval(() => {
-        if (start > 100) clearInterval(intervalId);
+        if (start > 100 || endGameModal.classList.contains('modal__active')) clearInterval(intervalId);
         else progressBar.value = start;
         start += 1;
       }, newTime);
@@ -237,6 +249,7 @@ export default class ArtistQuestion {
           minutes += 1;
           seconds = 0;
         }
+        if (endGameModal.classList.contains('modal__active')) clearInterval(timer);
         if (commonTime > this.getLocalStorageData().timeToAnswer) {
           clearInterval(timer);
           new AnswerModal().modalClose();

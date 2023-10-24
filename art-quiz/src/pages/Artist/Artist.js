@@ -2,8 +2,6 @@ import Pictures from '../Pictures';
 
 export default class Artist {
   render() {
-    const mainContainer = document.querySelector('.main__wrapper');
-
     const template = `
       <div class="artist">
         <div class="page__header">
@@ -16,8 +14,7 @@ export default class Artist {
       </div>
     `;
 
-    mainContainer.innerHTML = '';
-    mainContainer.insertAdjacentHTML('beforeend', template);
+    this.pageShow(template);
 
     document.querySelectorAll('.score__btn').forEach((item) => {
       const attribute = item.getAttribute('data-category');
@@ -52,5 +49,16 @@ export default class Artist {
     }
 
     return result;
+  }
+
+  pageShow(template) {
+    const mainContainer = document.querySelector('.main__wrapper');
+
+    mainContainer.style.opacity = '0';
+    setTimeout(() => {
+      mainContainer.innerHTML = '';
+      mainContainer.insertAdjacentHTML('beforeend', template);
+      mainContainer.style.opacity = '1';
+    }, 800);
   }
 }

@@ -43,7 +43,9 @@ export default class ControllerPages {
       dataCategory,
       this.setEventListener.bind(this),
     );
-    this.setEventListener();
+    setTimeout(() => {
+      this.setEventListener();
+    }, 800);
   }
 
   setEventListener() {

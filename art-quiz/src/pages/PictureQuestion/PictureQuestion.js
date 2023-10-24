@@ -45,8 +45,6 @@ export default class PictureQuestion {
 
     await this.dataFetch();
 
-    const mainContainer = document.querySelector('.main__wrapper');
-
     const template = `
       <div class="question">
         <img class="close picture__close" src="assets/close-logo.svg" alt="close">
@@ -76,14 +74,15 @@ export default class PictureQuestion {
       </div >
     `;
 
-    mainContainer.innerHTML = '';
-    mainContainer.insertAdjacentHTML('beforeend', template);
-    this.getAuthors();
-    setEventListener();
-    this.answerCheck();
-    this.nextQuestion();
-    new QuitModal().modalToggle();
-    this.setTimeGame();
+    this.pageShow(template);
+    setTimeout(() => {
+      this.getAuthors();
+      setEventListener();
+      this.answerCheck();
+      this.nextQuestion();
+      new QuitModal().modalToggle();
+      this.setTimeGame();
+    }, 800);
   }
 
   async dataFetch() {
@@ -123,6 +122,17 @@ export default class PictureQuestion {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  pageShow(template) {
+    const mainContainer = document.querySelector('.main__wrapper');
+
+    mainContainer.style.opacity = '0';
+    setTimeout(() => {
+      mainContainer.innerHTML = '';
+      mainContainer.insertAdjacentHTML('beforeend', template);
+      mainContainer.style.opacity = '1';
+    }, 800);
   }
 
   answerCheck() {
@@ -170,6 +180,7 @@ export default class PictureQuestion {
       const { pictureNum, dataCategory } = this.state;
 
       if (pictureNum === dataCategory + QUESTION_LENGTH - 1) {
+        new AnswerModal().modalClose();
         this.endGame();
         return;
       }
@@ -219,7 +230,7 @@ export default class PictureQuestion {
       winningAudio.play();
       this.setLocalStorageData();
     }
-    new EndGameModal().modalToggle();
+    new EndGameModal().modalOpen();
   }
 
   setLocalStorageData() {
@@ -236,6 +247,7 @@ export default class PictureQuestion {
     const progressBar = document.querySelector('.progress__bar');
     const progressWrap = document.querySelector('.progress__wrap');
     const progressTime = document.querySelector('.timer');
+    const endGameModal = document.querySelector('.end__game');
     const newTime = this.getLocalStorageData().timeToAnswer * 10;
 
     let minutes = 0;
@@ -247,7 +259,7 @@ export default class PictureQuestion {
       progressWrap.classList.add('progress__active');
 
       const intervalId = setInterval(() => {
-        if (start > 100) clearInterval(intervalId);
+        if (start > 100 || endGameModal.classList.contains('modal__active')) clearInterval(intervalId);
         else progressBar.value = start;
         start += 1;
       }, newTime);
@@ -261,6 +273,7 @@ export default class PictureQuestion {
           minutes += 1;
           seconds = 0;
         }
+        if (endGameModal.classList.contains('modal__active')) clearInterval(timer);
         if (commonTime > this.getLocalStorageData().timeToAnswer) {
           clearInterval(timer);
           new AnswerModal().modalClose();

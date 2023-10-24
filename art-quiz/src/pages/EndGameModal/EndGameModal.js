@@ -13,10 +13,10 @@ export default class EndGameModal {
     `;
   }
 
-  modalToggle() {
+  modalOpen() {
     const endGameModal = document.querySelector('.end__game');
     const overlay = document.querySelector('.overlay');
-    endGameModal.classList.toggle('modal__active');
-    overlay.classList.toggle('overlay__active');
+    endGameModal.classList.add('modal__active');
+    overlay.classList.add('overlay__active');
   }
 }

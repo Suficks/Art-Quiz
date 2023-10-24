@@ -13,8 +13,6 @@ const settings = {
 
 export default class Settings {
   render(pageBeforeSettings) {
-    const mainContainer = document.querySelector('.main__wrapper');
-
     const template = `
       <div class="settings__page">
         <div class="page__header">
@@ -49,12 +47,24 @@ export default class Settings {
       </div>
     `;
 
-    mainContainer.innerHTML = '';
-    mainContainer.insertAdjacentHTML('beforeend', template);
-    this.audioVolume();
-    this.setTimeGame();
-    this.setTimeToAnswer();
-    this.setSettings();
+    this.pageShow(template);
+    setTimeout(() => {
+      this.audioVolume();
+      this.setTimeGame();
+      this.setTimeToAnswer();
+      this.setSettings();
+    }, 800);
+  }
+
+  pageShow(template) {
+    const mainContainer = document.querySelector('.main__wrapper');
+
+    mainContainer.style.opacity = '0';
+    setTimeout(() => {
+      mainContainer.innerHTML = '';
+      mainContainer.insertAdjacentHTML('beforeend', template);
+      mainContainer.style.opacity = '1';
+    }, 800);
   }
 
   audioVolume() {

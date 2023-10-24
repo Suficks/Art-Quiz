@@ -26,35 +26,8 @@ a {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  transition: 0.8s ease;
 }
-
-// .main__wrapper__move {
-//   animation: move 1s ease;
-// }
-
-// .main__wrapper__remove {
-//   animation: remove 1s ease;
-// }
-
-// @keyframes move {
-//   0% {
-//     transform: translateX(0);
-//   }
-
-//   100% {
-//     transform: translateX(-300%);
-//   }
-// }
-
-// @keyframes remove {
-//   0% {
-//     transform: translateX(-300%);
-//   }
-
-//   100% {
-//     transform: translateX(0);
-//   }
-// }
 
 .main__page {
   .button {

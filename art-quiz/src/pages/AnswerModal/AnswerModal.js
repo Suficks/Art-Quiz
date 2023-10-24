@@ -24,7 +24,7 @@ export default class AnswerModal {
   modalClose() {
     const answerModal = document.querySelector('.answer__modal');
     const overlay = document.querySelector('.overlay');
-    answerModal.classList.remove('modal__active');
+    answerModal?.classList.remove('modal__active');
     overlay.classList.remove('overlay__active');
   }
 }
