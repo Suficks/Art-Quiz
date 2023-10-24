@@ -1,6 +1,14 @@
 export default class PictureScore {
-  render(_, dataCategory) {
+  constructor() {
+    this.state = {
+      data: [],
+    };
+  }
+
+  async render(_, dataCategory, setEventListener) {
     const mainContainer = document.querySelector('.main__wrapper');
+
+    await this.dataFetch();
 
     const template = `
       <div class="score__page">
@@ -17,7 +25,14 @@ export default class PictureScore {
 
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', template);
+    setEventListener();
     this.setCorrectImg(dataCategory);
+  }
+
+  async dataFetch() {
+    const url = 'https://raw.githubusercontent.com/Suficks/image-data/master/images.json';
+    const res = await fetch(url);
+    this.state.data = await res.json();
   }
 
   cardFill(dataCategory) {
@@ -29,6 +44,10 @@ export default class PictureScore {
       const cardItem = `
         <div class="card__item">
           <img class="card__img" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" alt="cardPic">
+          <div class="answer">
+            <p class="current__name">${this.state.data[i].name}</p>
+            <p class="current__author__year">${this.state.data[i].author}, ${this.state.data[i].year}</p>
+          </div>
         </div>
       `;
       result += cardItem;
@@ -42,8 +61,12 @@ export default class PictureScore {
     const imgs = document.querySelectorAll('.card__img');
 
     imgs.forEach((item, index) => {
+      const answerActive = () => item.nextElementSibling.classList.toggle('answer__active');
+
       if (array[index] === true) {
         item.classList.add('img__correct');
+        item.addEventListener('mouseenter', answerActive);
+        item.addEventListener('mouseleave', answerActive);
       }
     });
   }
