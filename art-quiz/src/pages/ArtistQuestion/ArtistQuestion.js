@@ -2,7 +2,6 @@ import QuitModal from '../QuitModal';
 import AnswerModal from '../AnswerModal';
 import EndGameModal from '../EndGameModal';
 import { audioFiles } from '../PictureQuestion';
-import { isTimeGame, timeToAnswer } from '../SettingsPage/Settings';
 
 const QUESTION_LENGTH = 10;
 
@@ -205,18 +204,22 @@ export default class ArtistQuestion {
     localStorage.setItem(`${dataCategory}-result`, JSON.stringify(answerForEachPic));
   }
 
+  getLocalStorageData() {
+    return JSON.parse(localStorage.getItem('settings'));
+  }
+
   setTimeGame() {
     const progressBar = document.querySelector('.progress__bar');
     const progressWrap = document.querySelector('.progress__wrap');
     const progressTime = document.querySelector('.timer');
-    const newTime = timeToAnswer * 10;
+    const newTime = this.getLocalStorageData().timeToAnswer * 10;
 
     let minutes = 0;
     let seconds = 0;
     let commonTime = 0;
     let start = 0;
 
-    if (isTimeGame) {
+    if (this.getLocalStorageData().isTimeGame) {
       progressWrap.classList.add('progress__active');
 
       const intervalId = setInterval(() => {
@@ -234,7 +237,7 @@ export default class ArtistQuestion {
           minutes += 1;
           seconds = 0;
         }
-        if (commonTime > timeToAnswer) {
+        if (commonTime > this.getLocalStorageData().timeToAnswer) {
           clearInterval(timer);
           new AnswerModal().modalClose();
           this.endGame();

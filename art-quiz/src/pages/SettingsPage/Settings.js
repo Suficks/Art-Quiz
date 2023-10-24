@@ -1,9 +1,8 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable import/no-mutable-exports */
 import { audioFiles } from '../PictureQuestion';
 
-export let isTimeGame = false;
-export let timeToAnswer = 20;
+let isTimeGame = false;
+let timeToAnswer = 20;
 let savedVolume = 50;
 
 const settings = {
