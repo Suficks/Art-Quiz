@@ -1,10 +1,16 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable import/no-mutable-exports */
 import { audioFiles } from '../PictureQuestion';
 
 export let isTimeGame = false;
 export let timeToAnswer = 20;
-let isSave = false;
 let savedVolume = 50;
+
+const settings = {
+  volume: 50,
+  isTimeGame: false,
+  timeToAnswer: 20,
+};
 
 export default class Settings {
   render(pageBeforeSettings) {
@@ -32,7 +38,7 @@ export default class Settings {
           <label class="label">
             <p class="label__name">Time to answer</p>
             <button class="minus" onclick="this.nextElementSibling.stepDown();">–</button>
-            <input type="number" class="time">
+            <input type="number" class="time" value="20">
             <button class="plus" onclick="this.previousElementSibling.stepUp();">+</button>
            </label>
         </div>
@@ -98,16 +104,15 @@ export default class Settings {
     const timeInput = document.querySelector('.time');
     const checkboxState = document.querySelector('.time__on');
     const saveModal = document.querySelector('.save__modal');
+    const localStorageData = JSON.parse(localStorage.getItem('settings'));
 
-    if (isSave) {
-      volumeInput.value = savedVolume;
-      checkbox.checked = isTimeGame;
-      timeInput.value = timeToAnswer;
-      volumeInput.style.background = `linear-gradient(to right, #FFBCA2 0%, #FFBCA2 ${savedVolume}%, rgb(196, 196, 196) ${savedVolume}%, rgb(196, 196, 196) 100%)`;
+    if (localStorageData) {
+      volumeInput.value = localStorageData.volume;
+      checkbox.checked = localStorageData.isTimeGame;
+      timeInput.value = localStorageData.timeToAnswer;
+      volumeInput.style.background = `linear-gradient(to right, #FFBCA2 0%, #FFBCA2 ${localStorageData.volume}%, rgb(196, 196, 196) ${localStorageData.volume}%, rgb(196, 196, 196) 100%)`;
       if (checkbox.checked) checkboxState.innerHTML = 'On';
       else checkboxState.innerHTML = 'Off';
-    } else {
-      timeInput.value = 20;
     }
 
     defaultBtn.addEventListener('click', () => {
@@ -116,11 +121,14 @@ export default class Settings {
       timeInput.value = 20;
       volumeInput.style.background = `linear-gradient(to right, #FFBCA2 0%, #FFBCA2 ${volumeInput.value}%, rgb(196, 196, 196) ${volumeInput.value}%, rgb(196, 196, 196) 100%)`;
       checkboxState.innerHTML = 'Off';
-      isSave = false;
+      localStorage.removeItem('settings');
     });
 
     saveBtn.addEventListener('click', () => {
-      isSave = true;
+      settings.volume = savedVolume;
+      settings.isTimeGame = isTimeGame;
+      settings.timeToAnswer = timeToAnswer;
+      localStorage.setItem('settings', JSON.stringify(settings));
       saveModal.classList.add('save__modal__active');
       setTimeout(() => {
         saveModal.classList.remove('save__modal__active');
