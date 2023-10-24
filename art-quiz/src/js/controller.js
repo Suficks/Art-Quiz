@@ -6,8 +6,7 @@ import PictureQuestion from '../pages/PictureQuestion';
 import ArtistQuestion from '../pages/ArtistQuestion';
 import QuitModal from '../pages/QuitModal';
 import EndGameModal from '../pages/EndGameModal';
-import PictureScore from '../pages/PictureScore';
-import ArtistScore from '../pages/ArtistScore';
+import Score from '../pages/Score';
 
 const classes = {
   Main,
@@ -18,8 +17,7 @@ const classes = {
   ArtistQuestion,
   QuitModal,
   EndGameModal,
-  PictureScore,
-  ArtistScore,
+  Score,
 };
 
 export default class ControllerPages {
@@ -28,6 +26,7 @@ export default class ControllerPages {
       currentPage: 'Main',
       pageBeforeSettings: '',
       dataCategory: 0,
+      pageBeforeScore: '',
     };
   }
 
@@ -36,16 +35,17 @@ export default class ControllerPages {
   }
 
   changePage() {
-    const { currentPage, pageBeforeSettings, dataCategory } = this.state;
+    const {
+      currentPage, pageBeforeSettings, dataCategory, pageBeforeScore,
+    } = this.state;
 
     new classes[currentPage]().render(
       pageBeforeSettings,
       dataCategory,
       this.setEventListener.bind(this),
+      pageBeforeScore,
     );
-    setTimeout(() => {
-      this.setEventListener();
-    }, 800);
+    this.setEventListener();
   }
 
   setEventListener() {
@@ -54,6 +54,7 @@ export default class ControllerPages {
     buttons.forEach((item) => {
       item.addEventListener('click', () => {
         this.state.dataCategory = item.getAttribute('data-category');
+        this.state.pageBeforeScore = item.getAttribute('data-prevPage');
         const pageName = item.getAttribute('data-page');
 
         if (pageName === 'Settings') {

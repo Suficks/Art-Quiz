@@ -1,5 +1,7 @@
 export default class Pictures {
   render() {
+    const mainContainer = document.querySelector('.main__wrapper');
+
     const template = `
       <div class="pictures">
         <div class="page__header">
@@ -12,7 +14,8 @@ export default class Pictures {
       </div>
     `;
 
-    this.pageShow(template);
+    mainContainer.innerHTML = '';
+    mainContainer.insertAdjacentHTML('beforeend', template);
 
     document.querySelectorAll('.score__btn').forEach((item) => {
       const attribute = item.getAttribute('data-category');
@@ -37,7 +40,7 @@ export default class Pictures {
           </div>
           <div class="card__img__wrap">
             <img class="card__img button__controller" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${i}.jpg" data-page="PictureQuestion" data-category="${i}" alt="cardPic">
-            <button class="score__btn button__controller" data-page="PictureScore" data-category="${i}">Score</button>
+            <button class="score__btn button__controller" data-page="Score" data-prevPage="Pictures" data-category="${i}">Score</button>
           </div>
         </div>
         `;
@@ -46,17 +49,6 @@ export default class Pictures {
     }
 
     return result;
-  }
-
-  pageShow(template) {
-    const mainContainer = document.querySelector('.main__wrapper');
-
-    mainContainer.style.opacity = '0';
-    setTimeout(() => {
-      mainContainer.innerHTML = '';
-      mainContainer.insertAdjacentHTML('beforeend', template);
-      mainContainer.style.opacity = '1';
-    }, 800);
   }
 
   getLocalStorageData(key) {

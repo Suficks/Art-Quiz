@@ -1,5 +1,7 @@
 export default class Main {
   render() {
+    const mainContainer = document.querySelector('.main__wrapper');
+
     const template = `
     <div class="main__page">
       <button class="button__controller settings" data-page="Settings"></button>
@@ -11,17 +13,7 @@ export default class Main {
     </div>
     `;
 
-    this.pageShow(template);
-  }
-
-  pageShow(template) {
-    const mainContainer = document.querySelector('.main__wrapper');
-
-    mainContainer.style.opacity = '0';
-    setTimeout(() => {
-      mainContainer.innerHTML = '';
-      mainContainer.insertAdjacentHTML('beforeend', template);
-      mainContainer.style.opacity = '1';
-    }, 800);
+    mainContainer.innerHTML = '';
+    mainContainer.insertAdjacentHTML('beforeend', template);
   }
 }

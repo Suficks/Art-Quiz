@@ -1,14 +1,17 @@
-import PictureScore from '../PictureScore';
-
-export default class ArtistScore {
+export default class Score {
   constructor() {
     this.state = {
       data: [],
+      pageBeforeScore: '',
     };
   }
 
-  async render(_, dataCategory, setEventListener) {
+  async render(_, dataCategory, setEventListener, pageBeforeScore) {
+    this.state.pageBeforeScore = pageBeforeScore;
+
     await this.dataFetch();
+
+    const mainContainer = document.querySelector('.main__wrapper');
 
     const template = `
       <div class="score__page">
@@ -16,14 +19,16 @@ export default class ArtistScore {
           <button class="settings button__controller" data-page="Settings"></button>
           <img src="assets/small-logo.svg" alt="logo" class="small__logo">
           <button class="button button__controller" data-page="Main">Home</button>
-          <button class="button button__controller" data-page="Artist">Categories</button>
+          <button class="button button__controller" data-page="${pageBeforeScore}">Categories</button>
           <button class="score">Score</button>
         </div>
         <div class="cards__container">${this.cardFill(+dataCategory)}</div>
       </div>
     `;
 
-    this.pageShow(template);
+    mainContainer.innerHTML = '';
+    mainContainer.insertAdjacentHTML('beforeend', template);
+
     setEventListener();
     this.setCorrectImg(dataCategory);
   }
@@ -32,17 +37,6 @@ export default class ArtistScore {
     const url = 'https://raw.githubusercontent.com/Suficks/image-data/master/images.json';
     const res = await fetch(url);
     this.state.data = await res.json();
-  }
-
-  pageShow(template) {
-    const mainContainer = document.querySelector('.main__wrapper');
-
-    mainContainer.style.opacity = '0';
-    setTimeout(() => {
-      mainContainer.innerHTML = '';
-      mainContainer.insertAdjacentHTML('beforeend', template);
-      mainContainer.style.opacity = '1';
-    }, 800);
   }
 
   cardFill(dataCategory) {
@@ -67,7 +61,7 @@ export default class ArtistScore {
   }
 
   setCorrectImg(key) {
-    const array = new PictureScore().getLocalStorageData(`${key}-result`);
+    const array = this.getLocalStorageData(`${key}-result`);
     const imgs = document.querySelectorAll('.card__img');
 
     imgs.forEach((item, index) => {
@@ -77,7 +71,14 @@ export default class ArtistScore {
         item.classList.add('img__correct');
         item.addEventListener('mouseenter', answerActive);
         item.addEventListener('mouseleave', answerActive);
-      } else item.classList.add('img__incorrect');
+      } else if (this.state.pageBeforeScore === 'Artist') {
+        item.classList.add('img__incorrect');
+      }
     });
+  }
+
+  getLocalStorageData(key) {
+    const localStorageData = JSON.parse(localStorage.getItem(key));
+    return localStorageData;
   }
 }

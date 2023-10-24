@@ -22,6 +22,8 @@ export default class ArtistQuestion {
 
     await this.dataFetch();
 
+    const mainContainer = document.querySelector('.main__wrapper');
+
     const template = `
       <div class="question">
         <img class="close picture__close" src="assets/close-logo.svg" alt="close">
@@ -50,18 +52,18 @@ export default class ArtistQuestion {
       </div>
     `;
 
-    this.pageShow(template);
-    setTimeout(() => {
-      this.getPictures();
-      setEventListener();
-      this.answerCheck();
-      this.nextQuestion();
-      this.setTimeGame();
-      audioFiles.forEach((audio) => {
-        audio.volume = +this.getLocalStorageData('settings').volume / 100;
-      });
-      new QuitModal().modalToggle();
-    }, 800);
+    mainContainer.innerHTML = '';
+    mainContainer.insertAdjacentHTML('beforeend', template);
+
+    this.getPictures();
+    setEventListener();
+    this.answerCheck();
+    this.nextQuestion();
+    this.setTimeGame();
+    audioFiles.forEach((audio) => {
+      audio.volume = +this.getLocalStorageData('settings').volume / 100;
+    });
+    new QuitModal().modalToggle();
   }
 
   async dataFetch() {
@@ -99,17 +101,6 @@ export default class ArtistQuestion {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
-  }
-
-  pageShow(template) {
-    const mainContainer = document.querySelector('.main__wrapper');
-
-    mainContainer.style.opacity = '0';
-    setTimeout(() => {
-      mainContainer.innerHTML = '';
-      mainContainer.insertAdjacentHTML('beforeend', template);
-      mainContainer.style.opacity = '1';
-    }, 800);
   }
 
   answerCheck() {
