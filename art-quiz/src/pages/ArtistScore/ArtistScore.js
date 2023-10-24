@@ -8,8 +8,6 @@ export default class ArtistScore {
   }
 
   async render(_, dataCategory, setEventListener) {
-    const mainContainer = document.querySelector('.main__wrapper');
-
     await this.dataFetch();
 
     const template = `
@@ -25,8 +23,7 @@ export default class ArtistScore {
       </div>
     `;
 
-    mainContainer.innerHTML = '';
-    mainContainer.insertAdjacentHTML('beforeend', template);
+    this.pageShow(template);
     setEventListener();
     this.setCorrectImg(dataCategory);
   }
@@ -35,6 +32,17 @@ export default class ArtistScore {
     const url = 'https://raw.githubusercontent.com/Suficks/image-data/master/images.json';
     const res = await fetch(url);
     this.state.data = await res.json();
+  }
+
+  pageShow(template) {
+    const mainContainer = document.querySelector('.main__wrapper');
+
+    mainContainer.style.opacity = '0';
+    setTimeout(() => {
+      mainContainer.innerHTML = '';
+      mainContainer.insertAdjacentHTML('beforeend', template);
+      mainContainer.style.opacity = '1';
+    }, 800);
   }
 
   cardFill(dataCategory) {

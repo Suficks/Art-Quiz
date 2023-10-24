@@ -56,8 +56,11 @@ export default class ArtistQuestion {
       setEventListener();
       this.answerCheck();
       this.nextQuestion();
-      new QuitModal().modalToggle();
       this.setTimeGame();
+      audioFiles.forEach((audio) => {
+        audio.volume = +this.getLocalStorageData('settings').volume / 100;
+      });
+      new QuitModal().modalToggle();
     }, 800);
   }
 
