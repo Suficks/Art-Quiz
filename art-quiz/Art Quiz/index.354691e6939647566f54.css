@@ -1,0 +1,1314 @@
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type=button]::-moz-focus-inner,
+[type=reset]::-moz-focus-inner,
+[type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type=button]:-moz-focusring,
+[type=reset]:-moz-focusring,
+[type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type=checkbox],
+[type=radio] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type=search] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: local("./common/fonts/Gilroy Medium"), local("Gilroy-Medium"), url(fonts/Gilroy-Medium..woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+body {
+  position: relative;
+  background: url(assets/main-pic.jpg) no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: #000000;
+  font-family: "Gilroy", sans-serif;
+  outline: none;
+}
+
+button {
+  border: 1.5px solid #FFF;
+  border-radius: 60px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.main__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.main__page .button {
+  padding: 20px 0;
+  width: 287px;
+  color: #FFF;
+  transition: 0.7s ease;
+}
+.main__page .button:nth-child(2) {
+  margin-right: 36px;
+  margin-bottom: 20px;
+}
+.main__page .settings {
+  position: absolute;
+  top: 70px;
+  right: 70px;
+  width: 36px;
+  height: 36px;
+  z-index: 4;
+  background-image: url(assets/settings-logo.svg);
+  border: none;
+}
+.main__page .settings:hover {
+  filter: invert(70%) sepia(13%) saturate(14%) hue-rotate(342deg) brightness(86%) contrast(81%);
+}
+.main__page .main {
+  text-align: center;
+  max-width: 614px;
+}
+.main__page .main .button__controller:hover {
+  color: black;
+  background-color: #FFF;
+}
+.main__page .main .button__controller:active {
+  background-color: #FFBCA2;
+}
+.main__page .main__logo {
+  width: 380px;
+  margin: 40px 0;
+}
+@media screen and (max-width: 670px) {
+  .main__page .button {
+    display: block;
+    margin: auto;
+  }
+  .main__page .button:nth-child(2) {
+    margin-right: auto;
+  }
+  .main__page .settings {
+    top: 50px;
+    right: 30px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .main__page .main__logo {
+    width: 250px;
+  }
+}
+
+.footer {
+  width: 90%;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__item {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #FFF;
+}
+
+.github__wrap {
+  display: flex;
+  gap: 5px;
+}
+
+.link {
+  color: white;
+  transition: 0.3s ease;
+}
+.link:hover {
+  opacity: 0.7;
+}
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background: url(assets/preloader.gif) no-repeat;
+  background-color: #000;
+  background-position: center;
+  visibility: hidden;
+}
+
+.show__preloader {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media screen and (max-width: 1350px) {
+  body {
+    background-size: cover;
+  }
+}
+@media screen and (max-width: 768px) {
+  body {
+    background: url(assets/main-pic-768.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+}
+@media screen and (max-width: 520px) {
+  .footer .logo {
+    width: 70px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .footer__item:first-child {
+    display: none;
+  }
+}
+.artist,
+.pictures,
+.score__page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 30px 70px 80px;
+  box-sizing: border-box;
+  background-color: black;
+}
+.artist .settings,
+.pictures .settings,
+.score__page .settings {
+  position: absolute;
+  top: 44px;
+  right: 69px;
+  width: 36px;
+  height: 36px;
+  z-index: 4;
+  background-image: url(assets/settings-logo.svg);
+  border: none;
+}
+.artist .settings:hover,
+.pictures .settings:hover,
+.score__page .settings:hover {
+  filter: invert(70%) sepia(13%) saturate(14%) hue-rotate(342deg) brightness(86%) contrast(81%);
+}
+.artist .page__header,
+.pictures .page__header,
+.score__page .page__header {
+  margin-bottom: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+}
+.artist .button,
+.pictures .button,
+.score__page .button {
+  border: none;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #FFf;
+  transition: 0.3s ease;
+}
+.artist .button:last-child,
+.pictures .button:last-child,
+.score__page .button:last-child {
+  color: #FFBCA2;
+  font-weight: 700;
+  cursor: auto;
+}
+.artist .button:hover:not(:last-child),
+.pictures .button:hover:not(:last-child),
+.score__page .button:hover:not(:last-child) {
+  color: #777777;
+}
+.artist .cards__container,
+.pictures .cards__container,
+.score__page .cards__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 197px));
+  grid-column-gap: 25px;
+  grid-row-gap: 30px;
+  justify-content: center;
+  color: white;
+}
+.artist .card__title__wrap,
+.pictures .card__title__wrap,
+.score__page .card__title__wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.artist .card__img__wrap,
+.pictures .card__img__wrap,
+.score__page .card__img__wrap {
+  position: relative;
+  margin-top: 7px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.artist .card__title,
+.pictures .card__title,
+.score__page .card__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.artist .score,
+.pictures .score,
+.score__page .score {
+  margin: 0;
+  color: #FFBCA2;
+}
+.artist .card__img,
+.pictures .card__img,
+.score__page .card__img {
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s ease;
+  filter: grayscale(1);
+}
+.artist .card__img:hover,
+.pictures .card__img:hover,
+.score__page .card__img:hover {
+  transform: scale(1.05);
+}
+.artist .card__img__color,
+.pictures .card__img__color,
+.score__page .card__img__color {
+  filter: none;
+}
+.artist .score__btn,
+.pictures .score__btn,
+.score__page .score__btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: url(assets/score-star.png) no-repeat 80% 50%;
+  background-color: #FFBCA2;
+  border-radius: 0;
+  border: none;
+  transition: 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 22px;
+  color: white;
+}
+.artist .score__btn:hover,
+.pictures .score__btn:hover,
+.score__page .score__btn:hover {
+  background-color: #ff966d;
+}
+.artist .score__active,
+.pictures .score__active,
+.score__page .score__active {
+  opacity: 1;
+  pointer-events: all;
+}
+@media screen and (max-width: 1024px) {
+  .artist .page__header,
+  .pictures .page__header,
+  .score__page .page__header {
+    width: 65%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .artist .page__header,
+  .pictures .page__header,
+  .score__page .page__header {
+    width: fit-content;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    gap: 40px;
+  }
+  .artist .settings,
+  .pictures .settings,
+  .score__page .settings {
+    right: 35px;
+  }
+  .artist .button,
+  .pictures .button,
+  .score__page .button {
+    padding: 0;
+    width: unset;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .artist,
+  .pictures,
+  .score__page {
+    padding: 25px 55px 75px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .artist,
+  .pictures,
+  .score__page {
+    padding: 25px 30px 75px;
+  }
+}
+.settings__page {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  padding: 47px 82px 0;
+  box-sizing: border-box;
+}
+.settings__page .page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.settings__page .button__controller {
+  position: relative;
+  border: none;
+  width: unset;
+  padding-left: 35px;
+  color: white;
+}
+.settings__page .button__controller:hover {
+  transform: scale(1);
+  color: gray;
+}
+.settings__page .button__controller:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  content: "";
+  background: url(assets/arrow-back.svg) no-repeat;
+  background-size: 28px 28px;
+  width: 28px;
+  height: 28px;
+}
+.settings__page .close {
+  cursor: pointer;
+  margin-right: 0;
+  transition: 0.3s ease;
+}
+.settings__page .close:hover {
+  filter: invert(70%) sepia(13%) saturate(14%) hue-rotate(342deg) brightness(86%) contrast(81%);
+}
+.settings__page .label {
+  position: relative;
+  display: block;
+  max-width: fit-content;
+  margin-bottom: 80px;
+}
+.settings__page .label__name {
+  margin: 0;
+  padding-bottom: 42px;
+}
+.settings__page .settings__wrap {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 28px;
+  color: white;
+}
+.settings__page input[type=range] {
+  width: 492px;
+  cursor: pointer;
+  background: linear-gradient(to right, #FFBCA2 0%, #FFBCA2 50%, rgb(196, 196, 196) 50%, rgb(196, 196, 196) 100%);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.settings__page input[type=range]::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 4.5px;
+}
+.settings__page input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #ecf0f1;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+}
+.settings__page .volume__logo {
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+}
+.settings__page .volume__mute {
+  left: 6px;
+}
+.settings__page .time__on {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 26px;
+  margin-right: 16px;
+}
+.settings__page .time__checkbox {
+  display: none;
+}
+.settings__page .fake {
+  position: relative;
+  bottom: -4px;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+  border-radius: 20px;
+  background-color: white;
+  cursor: pointer;
+}
+.settings__page .fake:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #FFBCA2;
+  transition: 0.3s ease;
+}
+.settings__page .time__checkbox:checked + .fake {
+  background-color: #FFBCA2;
+}
+.settings__page .time__checkbox:checked + .fake::before {
+  transform: translate(22px, -50%);
+  background-color: white;
+}
+.settings__page .minus,
+.settings__page .plus {
+  border: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background-color: white;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 36px;
+}
+.settings__page .minus {
+  background-color: #FFBCA2;
+}
+.settings__page input::-webkit-outer-spin-button,
+.settings__page input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.settings__page .time {
+  width: 40px;
+  height: 40px;
+  padding: 0 24px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-align: center;
+}
+.settings__page .buttons__wrap {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+.settings__page .button {
+  width: 278px;
+  padding: 20px 0;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 22px;
+  color: white;
+  transition: 0.7s ease;
+}
+.settings__page .button:hover {
+  color: black;
+  background-color: #FFF;
+}
+.settings__page .save__btn {
+  background-color: #FFBCA2;
+  color: black;
+  border: none;
+}
+.settings__page .save__btn:hover {
+  background-color: #fb966e;
+}
+.settings__page .save__modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -1500%);
+  width: 250px;
+  height: 50px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 20px;
+  color: black;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  transition: 0.5s ease;
+}
+.settings__page .save__modal__active {
+  transform: translate(-50%, 0);
+}
+@media screen and (max-width: 768px) {
+  .settings__page .settings__page {
+    padding: 30px 65px 0;
+  }
+  .settings__page input[type=range] {
+    width: calc(200px + 292 * (100vw - 320px) / 448);
+  }
+}
+@media screen and (max-width: 520px) {
+  .settings__page .label {
+    max-width: 100%;
+    text-align: center;
+  }
+  .settings__page .logo {
+    width: 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .settings__page {
+    padding: 30px 40px 0;
+  }
+}
+.question {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px 40px 0;
+  box-sizing: border-box;
+  background-color: black;
+}
+.question .main__question {
+  margin: 0 0 25px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  color: white;
+}
+.question .close {
+  margin-bottom: 25px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.question .close:hover {
+  filter: invert(70%) sepia(13%) saturate(14%) hue-rotate(342deg) brightness(86%) contrast(81%);
+}
+.question .question__img {
+  display: block;
+  max-width: 100%;
+  margin: auto;
+  margin-bottom: 25px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.question .buttons__wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 230px);
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+.question .question__btn {
+  height: 48px;
+  color: white;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 16px;
+  transition: 0.7s ease;
+}
+.question .question__btn:hover {
+  background-color: #FFBCA2;
+  color: black;
+  border: 1.5px solid black;
+}
+.question .progress__dots {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 70px;
+}
+.question .progress__dot {
+  width: 15px;
+  height: 15px;
+  background-color: #C4C4C4;
+  border-radius: 50%;
+}
+.question .img__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+  gap: 25px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.question .artist__img {
+  width: 100%;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.question progress::-webkit-progress-value {
+  background-color: #FFBCA2;
+  transition: 0.5s ease;
+}
+.question .progress__wrap {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translate(-42%, -1500%);
+  max-width: 715px;
+  width: 100%;
+}
+.question .progress__bar {
+  width: 100%;
+  height: 4px;
+  background-color: #A4A4A4;
+}
+.question .timer {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  color: white;
+}
+.question .progress__active {
+  transform: translate(-42%, 0);
+}
+.question .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: 0.5s ease;
+  z-index: 2;
+}
+.question .overlay__active {
+  opacity: 1;
+  pointer-events: all;
+}
+@media screen and (max-width: 1355px) {
+  .question .img__container {
+    grid-template-columns: repeat(2, minmax(200px, 300px));
+  }
+}
+@media screen and (max-width: 1045px) {
+  .question .buttons__wrap {
+    grid-template-columns: repeat(2, 230px);
+  }
+}
+@media screen and (max-width: 935px) {
+  .question .progress__wrap {
+    max-width: calc(250px + 465 * (100vw - 320px) / 615);
+  }
+}
+@media screen and (max-width: 555px) {
+  .question .question {
+    padding: 20px 29px 0;
+  }
+  .question .buttons__wrap {
+    grid-template-columns: repeat(2, minmax(130px, 230px));
+  }
+  .question .img__container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 300px));
+  }
+  .question .progress__dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .question .progress__dot {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .question {
+    padding: 20px 15px 0;
+  }
+}
+.quit__game__modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  max-width: 450px;
+  width: 95%;
+  padding: 25px;
+  box-sizing: border-box;
+  background-color: white;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  transform: translate(-50%, -600%);
+  transition: 0.5s ease;
+}
+.quit__game__modal .modal__close {
+  display: block;
+  margin: 0;
+  margin-left: auto;
+  width: 25px;
+  height: 25px;
+}
+.quit__game__modal .quit__text {
+  margin: 40px 0;
+}
+.quit__game__modal .quit__buttons__wrap {
+  display: flex;
+  gap: 15px;
+}
+.quit__game__modal .button {
+  display: inline-block;
+  padding: 15px;
+  max-width: 287px;
+  width: 100%;
+  color: black;
+  border: 1.5px solid black;
+}
+.quit__game__modal .button:hover {
+  background-color: #FFBCA2;
+  border: 1.5px solid transparent;
+}
+.quit__game__modal .button:nth-child(2) {
+  margin: 0;
+}
+
+.modal__active {
+  transform: translate(-50%, -50%);
+}
+
+.answer__modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 500px;
+  width: 95%;
+  margin: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+  text-transform: capitalize;
+  z-index: 3;
+  transition: 0.6s ease;
+  transform: translate(-50%, -1500%);
+}
+.answer__modal .current__img__wrap {
+  position: relative;
+}
+.answer__modal .current__img {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+}
+.answer__modal .correct__icon {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+}
+.answer__modal .next__button {
+  background-color: #FFBCA2;
+  max-width: 250px;
+  width: 100%;
+  padding: 10px 0;
+  transition: 0.5s ease;
+}
+.answer__modal .next__button:hover {
+  background-color: #fb966e;
+}
+
+.modal__active {
+  transform: translate(-50%, -50%);
+}
+
+.end__game {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  max-width: 350px;
+  width: 95%;
+  padding: 25px;
+  box-sizing: border-box;
+  background-color: white;
+  text-align: center;
+  border-radius: 20px;
+  transform: translate(-50%, -1500%);
+  transition: 0.5s ease;
+}
+.end__game .end__game__text {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+}
+.end__game .final__result {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 26px;
+}
+.end__game .end__img {
+  width: 140px;
+  height: 150px;
+}
+.end__game .buttons__containter {
+  display: flex;
+  justify-content: space-between;
+}
+.end__game .end__btn {
+  display: inline-block;
+  padding: 15px;
+  width: 100%;
+  color: black;
+  border: 1.5px solid black;
+}
+.end__game .end__btn:first-child {
+  margin-right: 20px;
+}
+.end__game .end__btn:hover {
+  background-color: #FFBCA2;
+  border: 1.5px solid transparent;
+}
+
+.modal__active {
+  transform: translate(-50%, -50%);
+}
+
+.score__page .page__header {
+  width: 50%;
+}
+.score__page .score {
+  padding: 0;
+  border: none;
+  cursor: auto;
+}
+.score__page .card__item {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.score__page .card__img {
+  border-radius: 20px;
+}
+.score__page .card__img:hover {
+  transform: none;
+}
+.score__page .img__correct {
+  filter: none;
+}
+.score__page .img__incorrect {
+  filter: blur(20px);
+}
+.score__page .answer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  bottom: 0;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  padding: 0 13px 21px;
+  box-sizing: border-box;
+  background-color: #FFBCA2;
+  color: black;
+  transition: 0.5s ease;
+  transform: translateY(-400%);
+  text-transform: capitalize;
+  pointer-events: none;
+}
+.score__page .answer__active {
+  transform: translateY(0);
+}
+.score__page .current__name {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 22px;
+  margin: 0 0 6px;
+}
+.score__page .current__author__year {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  font-style: italic;
+  margin: 0;
+}
+@media screen and (max-width: 1120px) {
+  .score__page .page__header {
+    width: 65%;
+  }
+}
+@media screen and (max-width: 875px) {
+  .score__page .page__header {
+    width: 80%;
+    gap: 30px;
+  }
+}
