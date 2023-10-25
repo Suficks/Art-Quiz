@@ -110,6 +110,9 @@ export default class Settings {
       volumeInput.value = localStorageData.volume;
       checkbox.checked = localStorageData.isTimeGame;
       timeInput.value = localStorageData.timeToAnswer;
+      savedVolume = localStorageData.volume;
+      isTimeGame = localStorageData.isTimeGame;
+      timeToAnswer = localStorageData.timeToAnswer;
       volumeInput.style.background = `linear-gradient(to right, #FFBCA2 0%, #FFBCA2 ${localStorageData.volume}%, rgb(196, 196, 196) ${localStorageData.volume}%, rgb(196, 196, 196) 100%)`;
       if (checkbox.checked) checkboxState.innerHTML = 'On';
       else checkboxState.innerHTML = 'Off';
