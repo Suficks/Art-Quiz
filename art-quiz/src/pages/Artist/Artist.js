@@ -3,6 +3,7 @@ import Pictures from '../Pictures';
 export default class Artist {
   render() {
     const mainContainer = document.querySelector('.main__wrapper');
+    const preloader = document.querySelector('.preloader');
 
     const template = `
       <div class="artist">
@@ -16,8 +17,12 @@ export default class Artist {
       </div>
     `;
 
+    preloader.classList.add('show__preloader');
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', template);
+    setTimeout(() => {
+      preloader.classList.remove('show__preloader');
+    }, 1000);
 
     document.querySelectorAll('.score__btn').forEach((item) => {
       const attribute = item.getAttribute('data-category');

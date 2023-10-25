@@ -12,6 +12,7 @@ export default class Score {
     await this.dataFetch();
 
     const mainContainer = document.querySelector('.main__wrapper');
+    const preloader = document.querySelector('.preloader');
 
     const template = `
       <div class="score__page">
@@ -26,8 +27,12 @@ export default class Score {
       </div>
     `;
 
+    preloader.classList.add('show__preloader');
     mainContainer.innerHTML = '';
     mainContainer.insertAdjacentHTML('beforeend', template);
+    setTimeout(() => {
+      preloader.classList.remove('show__preloader');
+    }, 1000);
 
     setEventListener();
     this.setCorrectImg(dataCategory);
