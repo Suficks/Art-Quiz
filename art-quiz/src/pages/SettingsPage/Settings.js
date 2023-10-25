@@ -1,6 +1,3 @@
-/* eslint-disable import/no-mutable-exports */
-import { audioFiles } from '../PictureQuestion';
-
 let isTimeGame = false;
 let timeToAnswer = 20;
 let savedVolume = 50;
@@ -63,9 +60,6 @@ export default class Settings {
 
     volumeInput.addEventListener('input', () => {
       savedVolume = volumeInput.value;
-      audioFiles.forEach((audio) => {
-        audio.volume = savedVolume / 100;
-      });
       volumeInput.style.background = `linear-gradient(to right, #FFBCA2 0%, #FFBCA2 ${volumeInput.value}%, rgb(196, 196, 196) ${volumeInput.value}%, rgb(196, 196, 196) 100%)`;
     });
   }

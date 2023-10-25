@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable import/no-cycle */
 import QuitModal from '../QuitModal';
 import AnswerModal from '../AnswerModal';
@@ -52,7 +53,7 @@ export default class PictureQuestion {
         <img class="close picture__close" src="assets/close-logo.svg" alt="close">
         <div class="progress__wrap">
           <progress class="progress__bar" value="0" max="100"></progress>
-          <span class="timer">0:${this.getLocalStorageData().timeToAnswer}</span>
+          <span class="timer">0:${this.getLocalStorageData()?.timeToAnswer}</span>
         </div>
         <p class="main__question">Who is the author of this picture?</p>
         <img class="question__img" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${this.state.pictureNum}.jpg" alt="question">
@@ -85,7 +86,7 @@ export default class PictureQuestion {
     this.nextQuestion();
     this.setTimeGame();
     audioFiles.forEach((audio) => {
-      audio.volume = +this.getLocalStorageData('settings').volume / 100;
+      audio.volume = +this.getLocalStorageData('settings')?.volume / 100 || 0.5;
     });
     new QuitModal().modalToggle();
   }
@@ -256,13 +257,13 @@ export default class PictureQuestion {
     const progressTime = document.querySelector('.timer');
     const answerModal = document.querySelector('.answer__modal');
     const quitModal = document.querySelector('.quit__game__modal');
-    const newTime = this.getLocalStorageData().timeToAnswer * 10;
+    const newTime = this.getLocalStorageData()?.timeToAnswer * 10;
 
-    let seconds = +this.getLocalStorageData().timeToAnswer;
+    let seconds = +this.getLocalStorageData()?.timeToAnswer;
     let start = 0;
     let isPaused = false;
 
-    if (this.getLocalStorageData().isTimeGame) {
+    if (this.getLocalStorageData()?.isTimeGame) {
       progressWrap.classList.add('progress__active');
 
       const intervalId = setInterval(() => {
@@ -275,7 +276,6 @@ export default class PictureQuestion {
 
       const timer = setInterval(() => {
         if (!isPaused) {
-          console.log(seconds);
           if (seconds > 9) progressTime.innerHTML = `0:${seconds}`;
           else progressTime.innerHTML = `0:0${seconds}`;
           seconds -= 1;

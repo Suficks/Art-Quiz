@@ -1,3 +1,4 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import QuitModal from '../QuitModal';
 import AnswerModal from '../AnswerModal';
 import EndGameModal from '../EndGameModal';
@@ -29,7 +30,7 @@ export default class ArtistQuestion {
         <img class="close picture__close" src="assets/close-logo.svg" alt="close">
         <div class="progress__wrap">
           <progress class="progress__bar" value="0" max="100"></progress>
-          <span class="timer">0:${this.getLocalStorageData().timeToAnswer}</span>
+          <span class="timer">0:${this.getLocalStorageData()?.timeToAnswer}</span>
         </div>
         <p class="main__question">Which is ${this.state.data[dataCategory].author} picture?</p>
         <div class="img__container"></div>
@@ -61,7 +62,7 @@ export default class ArtistQuestion {
     this.nextQuestion();
     this.setTimeGame();
     audioFiles.forEach((audio) => {
-      audio.volume = +this.getLocalStorageData('settings').volume / 100;
+      audio.volume = +this.getLocalStorageData('settings')?.volume / 100 || 0.5;
     });
     new QuitModal().modalToggle();
   }
@@ -232,13 +233,13 @@ export default class ArtistQuestion {
     const progressTime = document.querySelector('.timer');
     const answerModal = document.querySelector('.answer__modal');
     const quitModal = document.querySelector('.quit__game__modal');
-    const newTime = this.getLocalStorageData().timeToAnswer * 10;
+    const newTime = this.getLocalStorageData()?.timeToAnswer * 10;
 
-    let seconds = +this.getLocalStorageData().timeToAnswer;
+    let seconds = +this.getLocalStorageData()?.timeToAnswer;
     let start = 0;
     let isPaused = false;
 
-    if (this.getLocalStorageData().isTimeGame) {
+    if (this.getLocalStorageData()?.isTimeGame) {
       progressWrap.classList.add('progress__active');
 
       const intervalId = setInterval(() => {
