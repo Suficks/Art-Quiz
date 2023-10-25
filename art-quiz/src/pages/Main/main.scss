@@ -149,11 +149,12 @@ a {
   background: url('./common/img/preloader.gif') no-repeat;
   background-color: #000;
   background-position: center;
-  pointer-events: none;
+  visibility: hidden;
 }
 
 .show__preloader {
   opacity: 1;
+  visibility: visible;
 }
 
 @media screen and (max-width: 1350px) {
