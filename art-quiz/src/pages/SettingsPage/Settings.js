@@ -37,7 +37,7 @@ export default class Settings {
           <label class="label">
             <p class="label__name">Time to answer</p>
             <button class="minus" onclick="this.nextElementSibling.stepDown();">–</button>
-            <input type="number" class="time" value="20">
+            <input type="number" class="time" value="20" max="30" step="5" min="5">
             <button class="plus" onclick="this.previousElementSibling.stepUp();">+</button>
            </label>
         </div>
@@ -127,7 +127,8 @@ export default class Settings {
     saveBtn.addEventListener('click', () => {
       settings.volume = savedVolume;
       settings.isTimeGame = isTimeGame;
-      settings.timeToAnswer = timeToAnswer;
+      if (timeToAnswer < 9) settings.timeToAnswer = `0${timeToAnswer}`;
+      else settings.timeToAnswer = timeToAnswer;
       localStorage.setItem('settings', JSON.stringify(settings));
       saveModal.classList.add('save__modal__active');
       setTimeout(() => {

@@ -52,7 +52,7 @@ export default class PictureQuestion {
         <img class="close picture__close" src="assets/close-logo.svg" alt="close">
         <div class="progress__wrap">
           <progress class="progress__bar" value="0" max="100"></progress>
-          <span class="timer">0:00</span>
+          <span class="timer">0:${this.getLocalStorageData().timeToAnswer}</span>
         </div>
         <p class="main__question">Who is the author of this picture?</p>
         <img class="question__img" src="https://raw.githubusercontent.com/Suficks/image-data/master/img/${this.state.pictureNum}.jpg" alt="question">
@@ -129,7 +129,7 @@ export default class PictureQuestion {
     return array;
   }
 
-  answerCheck() {
+  answerCheck(seconds) {
     const { pictureNum, data } = this.state;
     const { author, name, year } = data[pictureNum];
 
@@ -165,6 +165,18 @@ export default class PictureQuestion {
         new AnswerModal().modalToggle();
       });
     });
+
+    if (seconds === 0) {
+      correctIcon.src = 'assets/correct-icon.svg';
+      progressDots[dotsCount].style.backgroundColor = '#FFBCA2';
+      this.state.answerForEachPic.push(false);
+      incorrectAnswerAudio.play();
+      currentPic.src = questionPic.src;
+      correctAuthor.innerHTML = author;
+      correctName.innerHTML = name;
+      correctYear.innerHTML = year;
+      new AnswerModal().modalToggle();
+    }
   }
 
   nextQuestion() {
@@ -185,6 +197,7 @@ export default class PictureQuestion {
       this.getAuthors();
       this.answerCheck();
       new AnswerModal().modalToggle();
+      this.setTimeGame();
     });
   }
 
@@ -241,38 +254,36 @@ export default class PictureQuestion {
     const progressBar = document.querySelector('.progress__bar');
     const progressWrap = document.querySelector('.progress__wrap');
     const progressTime = document.querySelector('.timer');
-    const endGameModal = document.querySelector('.end__game');
+    const answerModal = document.querySelector('.answer__modal');
+    const quitModal = document.querySelector('.quit__game__modal');
     const newTime = this.getLocalStorageData().timeToAnswer * 10;
 
-    let minutes = 0;
-    let seconds = 0;
-    let commonTime = 0;
+    let seconds = +this.getLocalStorageData().timeToAnswer;
     let start = 0;
+    let isPaused = false;
 
     if (this.getLocalStorageData().isTimeGame) {
       progressWrap.classList.add('progress__active');
 
       const intervalId = setInterval(() => {
-        if (start > 100 || endGameModal.classList.contains('modal__active')) clearInterval(intervalId);
-        else progressBar.value = start;
-        start += 1;
+        if (!isPaused) {
+          if (start > 100 || answerModal.classList.contains('modal__active')) clearInterval(intervalId);
+          else progressBar.value = start;
+          start += 1;
+        }
       }, newTime);
 
       const timer = setInterval(() => {
-        if (seconds > 9) progressTime.innerHTML = `${minutes}:${seconds}`;
-        else progressTime.innerHTML = `${minutes}:0${seconds}`;
-        seconds += 1;
-        commonTime += 1;
-        if (seconds > 59) {
-          minutes += 1;
-          seconds = 0;
+        if (!isPaused) {
+          console.log(seconds);
+          if (seconds > 9) progressTime.innerHTML = `0:${seconds}`;
+          else progressTime.innerHTML = `0:0${seconds}`;
+          seconds -= 1;
+          if (answerModal.classList.contains('modal__active')) clearInterval(timer);
+          if (seconds === 0) this.answerCheck(seconds);
         }
-        if (endGameModal.classList.contains('modal__active')) clearInterval(timer);
-        if (commonTime > this.getLocalStorageData().timeToAnswer) {
-          clearInterval(timer);
-          new AnswerModal().modalClose();
-          this.endGame();
-        }
+        if (quitModal.classList.contains('modal__active')) isPaused = true;
+        else isPaused = false;
       }, 1000);
     }
   }
